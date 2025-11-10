@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!-- saved from url=(0030)http://127.0.0.1:5500/new.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MASTER SOP HANDBOOK</title>
 
@@ -658,11 +659,7 @@
         <button class="download-btn" onclick="downloadHTML()">⬇️ Download</button>
     </div>
 
-    <div class="notification" id="notification" style="background: rgb(16, 185, 129);">
-                <div style="font-weight: bold; margin-bottom: 5px;">✅ Images Saved!</div>
-                <div style="font-size: 13px;">0 images converted, 0 already saved</div>
-                <div style="font-size: 12px; margin-top: 5px;">Now press Ctrl+S to save the file permanently!</div>
-            </div>
+    <div class="notification" id="notification">Changes saved successfully! ✓</div>
 
     <!-- Upload Modal -->
     <div id="uploadModal" class="upload-modal">
@@ -707,7 +704,8 @@
                     2. URL should end with .jpg, .png, .gif, or be a direct image link<br>
                     3. Example: https://i.imgur.com/example.png
                 </p>
-                <input type="text" id="url-link-input" placeholder="Paste image URL here... (e.g., https://example.com/image.png)">
+                <input type="text" id="url-link-input"
+                    placeholder="Paste image URL here... (e.g., https://example.com/image.png)">
                 <button class="modal-btn" style="background: #f59e0b; color: white;" onclick="loadFromUrl()">
                     ✓ Load Image
                 </button>
@@ -729,57 +727,57 @@
 
     <div class="container">
         <div class="main-buttons">
-            <div class="main-btn active" onclick="showSection(&#39;hub-portal&#39;)">
+            <div class="main-btn" onclick="showSection('hub-portal')">
                 <div class="icon">🏬</div>
                 <h2>Hub Portal</h2>
-                <p>Inbound &amp; Outbound Operations</p>
+                <p>Inbound & Outbound Operations</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;rider-app&#39;)">
+            <div class="main-btn" onclick="showSection('rider-app')">
                 <div class="icon">🛵</div>
                 <h2>Rider App</h2>
-                <p>Delivery &amp; Pickup Flows</p>
+                <p>Delivery & Pickup Flows</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;dashboard&#39;)">
+            <div class="main-btn" onclick="showSection('dashboard')">
                 <div class="icon">📊</div>
                 <h2>Dashboard</h2>
-                <p>Live Tracking &amp; Reports</p>
+                <p>Live Tracking & Reports</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;exception&#39;)">
+            <div class="main-btn" onclick="showSection('exception')">
                 <div class="icon">📝</div>
                 <h2>Exception Portal</h2>
-                <p>Shipment Tally &amp; Exceptions</p>
+                <p>Shipment Tally & Exceptions</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;valinor&#39;)">
+            <div class="main-btn" onclick="showSection('valinor')">
                 <div class="icon">🖥</div>
                 <h2>Valinor</h2>
                 <p>Login Portal</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;glossary&#39;)">
+            <div class="main-btn" onclick="showSection('glossary')">
                 <div class="icon">🔖</div>
                 <h2>Glossary</h2>
-                <p>Terms &amp; Definitions</p>
+                <p>Terms & Definitions</p>
             </div>
         </div>
 
         <!-- HUB PORTAL SECTION -->
-        <div id="hub-portal" class="content-area active">
+        <div id="hub-portal" class="content-area">
             <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
             <h2 style="color: #667eea; margin-bottom: 20px;">🏬 Hub Portal Activities</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn active" onclick="showSubsection(&#39;hub&#39;, &#39;inbound&#39;, this)">📥 Inbound
+                <button class="subsection-btn" onclick="showSubsection('hub', 'inbound', this)">📥 Inbound
                     Process</button>
             </div>
 
-            <div id="hub-inbound" class="sop-content active">
+            <div id="hub-inbound" class="sop-content">
                 <h3 style="color: #764ba2; margin-bottom: 25px;">📥 Inbound Process</h3>
 
                 <div class="detail-nav">
-                    <button class="detail-btn active" onclick="showDetail(&#39;inbound&#39;, &#39;master-manifest&#39;, this)">1️⃣ Master
+                    <button class="detail-btn" onclick="showDetail('inbound', 'master-manifest', this)">1️⃣ Master
                         Manifest Receive</button>
                 </div>
 
-                <div id="inbound-master-manifest" class="sop-detail" style="display: block;">
+                <div id="inbound-master-manifest" class="sop-detail">
                     <div class="sop-step">
                         <h3><span class="step-number">1.1 </span>Receiving Manifest from Master Manifest</h3>
                         <div class="step-description">
@@ -788,7 +786,9 @@
                         </div>
 
                         <div class="step-image-container" onclick="uploadImage(this)" id="first-step-image">
-                            <img src="./new_files/1.1.png" alt="MM Reaching Hub Button" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1f0harbLwM28uLgLYnWBMViGf27b33NZm&#39;; this.onerror=function(){this.style.display=&#39;none&#39;; this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;};">
+                            <img src="https://drive.google.com/thumbnail?id=1f0harbLwM28uLgLYnWBMViGf27b33NZm&sz=w2000"
+                                alt="MM Reaching Hub Button"
+                                onerror="this.src='https://drive.google.com/uc?export=view&id=1f0harbLwM28uLgLYnWBMViGf27b33NZm'; this.onerror=function(){this.style.display='none'; this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';};">
                         </div>
                         <p><strong>Step 1:</strong> Navigate to Hub Portal and click on "MM Reaching Hub".</p>
 
@@ -799,9 +799,9 @@
                                 <div class="route-arrow">→</div>
                                 <div class="route-step">Receive on Trip</div>
                                 <div class="route-arrow">→</div>
-                                <div class="route-step">Scan Seal &amp; Manifests</div>
+                                <div class="route-step">Scan Seal & Manifests</div>
                                 <div class="route-arrow">→</div>
-                                <div class="route-step">Submit &amp; Get POD</div>
+                                <div class="route-step">Submit & Get POD</div>
                             </div>
                         </div>
                     </div>
@@ -815,7 +815,7 @@
             <h2 style="color: #667eea; margin-bottom: 20px;">🛵 Rider App Operations</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;rider&#39;, &#39;login&#39;, this)">🔐 Login
+                <button class="subsection-btn" onclick="showSubsection('rider', 'login', this)">🔐 Login
                     Process</button>
             </div>
 
@@ -823,7 +823,7 @@
                 <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Rider Login Process</h3>
 
                 <div class="sop-step">
-                    <h3><span class="step-number">3.3 </span>App Login &amp; Daily Check-in</h3>
+                    <h3><span class="step-number">3.3 </span>App Login & Daily Check-in</h3>
                     <div class="step-description">
                         <b>Step-by-step guide for riders to log in, verify their number, and start their daily delivery
                             operations.</b>
@@ -838,7 +838,7 @@
                     <div class="route-map">
                         <h4>🗺️ Login Flow:</h4>
                         <div class="route-steps">
-                            <div class="route-step">Open App &amp; Choose Language</div>
+                            <div class="route-step">Open App & Choose Language</div>
                             <div class="route-arrow">→</div>
                             <div class="route-step">Allow Call Logs</div>
                             <div class="route-arrow">→</div>
@@ -863,10 +863,10 @@
         <!-- DASHBOARD SECTION -->
         <div id="dashboard" class="content-area">
             <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">📊 Dashboard &amp; Reports</h2>
+            <h2 style="color: #667eea; margin-bottom: 20px;">📊 Dashboard & Reports</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;dash&#39;, &#39;live-tracking&#39;, this)">🔴 Live
+                <button class="subsection-btn" onclick="showSubsection('dash', 'live-tracking', this)">🔴 Live
                     Dashboard</button>
             </div>
 
@@ -874,15 +874,16 @@
                 <h3 style="color: #764ba2; margin-bottom: 25px;">🔴 Live Dashboard</h3>
 
                 <div class="sop-step">
-                    <h3>Real-time Hub &amp; Shipment Monitoring</h3>
+                    <h3>Real-time Hub & Shipment Monitoring</h3>
                     <p><strong>Live:</strong> Data is updated immediately or continuously, showing the current status.
                     </p>
 
                     <div class="step-image-container" onclick="uploadImage(this)" id="first-step-image">
-                        <img src="./new_files/1.2.png" alt="SOP Image" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV&#39;; 
+                        <img src="https://drive.google.com/thumbnail?id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV&sz=w2000"
+                            alt="SOP Image" onerror="this.src='https://drive.google.com/uc?export=view&id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV'; 
                  this.onerror=function(){
-                    this.style.display=&#39;none&#39;; 
-                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                    this.style.display='none'; 
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
                  };">
                     </div>
                     <p><strong>Step 1:</strong> <strong>GEM – Delivery Champion</strong><br>
@@ -908,7 +909,7 @@
             <h2 style="color: #667eea; margin-bottom: 20px;">📝 Exception Portal</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;exc&#39;, &#39;tally&#39;, this)">📊 Shipment Tally</button>
+                <button class="subsection-btn" onclick="showSubsection('exc', 'tally', this)">📊 Shipment Tally</button>
             </div>
 
             <div id="exc-tally" class="sop-content">
@@ -918,8 +919,14 @@
                     <p><strong>Shipment Tally:</strong> The process of counting and verifying incoming shipments against
                         the manifest.</p>
 
-                    <div class="step-image-container" onclick="uploadImage(this)">
-                        <p style="color: #667eea;">📸 Click here to upload image</p>
+
+                    <div class="step-image-container" onclick="uploadImage(this)" id="step-image-7">
+                        <img src="https://drive.google.com/thumbnail?id=1pZ5COGaJQ8GObQDElj3TpTJp6CQ_icGZ&sz=w2000"
+                            alt="Image 7" onerror="this.src='https://drive.google.com/uc?export=view&id=1pZ5COGaJQ8GObQDElj3TpTJp6CQ_icGZ';
+                 this.onerror=function(){
+                    this.style.display='none';
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
+                 };">
                     </div>
                     <p><strong>Step 1:</strong> Click on <strong>Shipment Tally</strong>.</p>
 
@@ -930,7 +937,7 @@
                             <div class="route-arrow">→</div>
                             <div class="route-step">Check Against AWB</div>
                             <div class="route-arrow">→</div>
-                            <div class="route-step">Verify Accuracy &amp; Confirm</div>
+                            <div class="route-step">Verify Accuracy & Confirm</div>
                         </div>
                     </div>
                 </div>
@@ -943,12 +950,12 @@
             <h2 style="color: #667eea; margin-bottom: 20px;">🖥 Valinor Login Portal</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;val&#39;, &#39;access&#39;, this)">🔐 Access &amp;
+                <button class="subsection-btn" onclick="showSubsection('val', 'access', this)">🔐 Access &
                     Login</button>
             </div>
 
             <div id="val-access" class="sop-content">
-                <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Access &amp; Login</h3>
+                <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Access & Login</h3>
                 <div class="sop-step">
                     <h3>Valinor Portal Access</h3>
                     <p><strong>Valinor Portal:</strong> Steps to securely log in to the Valinor portal.</p>
@@ -978,13 +985,14 @@
         <!-- GLOSSARY SECTION -->
         <div id="glossary" class="content-area">
             <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">🔖 Glossary &amp; Definitions</h2>
+            <h2 style="color: #667eea; margin-bottom: 20px;">🔖 Glossary & Definitions</h2>
 
             <button class="subsection-btn" style="margin-bottom: 20px; background: #667eea; color: white;">
                 📖 Key Terms
             </button>
 
-            <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <div
+                style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                 <table class="glossary-table">
                     <thead>
                         <tr>
@@ -1001,7 +1009,8 @@
                             <td>Unique tracking number assigned to each shipment for identification and tracking
                                 purposes.</td>
                             <td style="text-align: center;">
-                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
+                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;"
+                                    onclick="navigateToSOP('hub-portal','inbound','master-manifest')">
                                     👉 Go to SOP
                                 </button>
                             </td>
@@ -1011,7 +1020,8 @@
                             <td>Master Manifest</td>
                             <td>A document that consolidates multiple shipments into one transport unit.</td>
                             <td style="text-align: center;">
-                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
+                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;"
+                                    onclick="navigateToSOP('hub-portal','inbound','master-manifest')">
                                     👉 Go to SOP
                                 </button>
                             </td>
@@ -1021,7 +1031,8 @@
             </div>
 
             <!-- Instructions for sharing with team -->
-            <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 100%); border-radius: 15px; border: 2px solid #667eea;">
+            <div
+                style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 100%); border-radius: 15px; border: 2px solid #667eea;">
                 <h3 style="color: #667eea; margin-bottom: 15px;">📤 How to Share This SOP with Your Team</h3>
 
                 <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
@@ -1737,44 +1748,6 @@
             }
         };
     </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+</body>
 
-
-</body></html>
+</html>
