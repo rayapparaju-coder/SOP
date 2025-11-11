@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/Index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASTER SOP HANDBOOK</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #4ba254 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Particles */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        body::before {
+            background: rgba(102, 126, 234, 0.4);
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            background: rgba(75, 162, 84, 0.4);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(100px, -100px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-50px, 100px) scale(0.9);
+            }
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .save-download-section {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .save-btn,
+        .download-btn {
+            background: #4ba254;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-image-container {
+            width: 100%;
+            margin: 15px 0;
+            padding: 0;
+        }
+
+        .step-image-container .image-wrapper {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .step-image-container {
+                margin: 10px 0;
+            }
+
+            .step-image-container img {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+        }
+
+        /* Splash Effect on Buttons */
+        .save-btn::before,
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .save-btn:active::before,
+        .download-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .save-btn:hover,
+        .download-btn:hover {
+            background: #3d8f44;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .save-btn {
+            background: #667eea;
+        }
+
+        .save-btn:hover {
+            background: #5568d3;
+        }
+
+        /* Ripple Effect */
+        .save-btn::after,
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            animation: ripple 1.5s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #4ba254 100%);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 auto 30px auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-center h1 {
+            color: #222;
+            font-size: 3.8em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            animation: titleBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes titleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .header-center h1::before {
+            content: "📋 ";
+            display: inline-block;
+            animation: iconSpin 3s linear infinite;
+        }
+
+        @keyframes iconSpin {
+
+            0%,
+            90%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            95% {
+                transform: rotate(15deg);
+            }
+        }
+
+        .header-center p {
+            color: #070000;
+            font-size: 30px;
+            margin-top: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-info {
+            margin-top: 10px;
+            border-radius: 10px;
+            padding: 10px 300px;
+            width: fit-content;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            font-size: 20px;
+            color: #0a0101;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-info span {
+            border-right: 1px solid #ccc;
+            padding-right: 15px;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .header-info span:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .header-info span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .header-info span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-info span:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .main-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .main-btn {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Splash Background Effect */
+        .main-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+            z-index: 0;
+        }
+
+        .main-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .main-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+            color: white;
+        }
+
+        .main-btn:hover h2,
+        .main-btn:hover p {
+            color: white;
+        }
+
+        .main-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #764ba2;
+        }
+
+        .main-btn:nth-child(1) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+        }
+
+        .main-btn:nth-child(2) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .main-btn:nth-child(3) .icon {
+            animation: slideUpDown 2s ease-in-out infinite;
+        }
+
+        .main-btn:nth-child(4) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .main-btn:nth-child(5) .icon {
+            animation: slideUpDown 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .main-btn:nth-child(6) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes slideLeftRight {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes slideUpDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .main-btn h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .main-btn.active h2,
+        .main-btn.active p {
+            color: white;
+        }
+
+        .main-btn p {
+            color: #666;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .content-area {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .content-area.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subsection-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .subsection-btn {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Button Splash Effect */
+        .subsection-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            border-radius: 50%;
+        }
+
+        .subsection-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .subsection-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .subsection-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #764ba2;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .sop-content {
+            display: none;
+        }
+
+        .sop-content.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .detail-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+
+        .detail-btn {
+            padding: 15px 25px;
+            background: white;
+            border: 2px solid #5568d3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #5568d3;
+            font-size: 15px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Wave Effect on Hover */
+        .detail-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(85, 104, 211, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .detail-btn:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .detail-btn:hover {
+            background: #5568d3;
+            color: white;
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 0 4px 12px rgba(85, 104, 211, 0.3);
+        }
+
+        .detail-btn.active {
+            background: #5568d3;
+            color: white;
+            box-shadow: 0 4px 12px rgba(85, 104, 211, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 12px rgba(85, 104, 211, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 8px 20px rgba(85, 104, 211, 0.6);
+            }
+        }
+
+        .sop-step {
+            background: #f9f9f9;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .sop-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sop-step h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .step-description {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .step-image-container {
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .step-image-container {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0e7ff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #667eea;
+            margin: 15px 0;
+            position: relative;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .route-map {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 8px;
+        }
+
+        .route-map h4 {
+            color: #5568d3;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .route-steps {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .route-step {
+            background: #5568d3;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 2px solid #5568d3;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            animation: routeStepPop 0.5s ease backwards;
+        }
+
+        .route-step:nth-child(odd) {
+            animation-delay: calc(var(--index, 0) * 0.1s);
+        }
+
+        @keyframes routeStepPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .route-arrow {
+            color: #5568d3;
+            font-size: 1.5em;
+            font-weight: bold;
+            animation: arrowBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes arrowBounce {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .back-btn {
+            background: #f5f5f5;
+            color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #4ba254;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: none;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatRandom 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            background: #667eea;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            background: #4ba254;
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: #764ba2;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+
+        @keyframes floatRandom {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(50px, -50px) rotate(90deg);
+            }
+
+            50% {
+                transform: translate(-30px, 80px) rotate(180deg);
+            }
+
+            75% {
+                transform: translate(70px, 30px) rotate(270deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .header-center h1 {
+                font-size: 1.8em;
+            }
+
+            .save-download-section {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .route-steps {
+                flex-direction: column;
+            }
+
+            .header-info {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+
+        /* TABLE STYLES - EXPANDED FULL WIDTH */
+        .glossary-table-wrapper {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .glossary-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .glossary-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .glossary-table th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1em;
+            border-bottom: 3px solid #5568d3;
+        }
+
+        /* Column widths for better distribution */
+        .glossary-table th:nth-child(1) {
+            width: 15%;
+        }
+
+        .glossary-table th:nth-child(2) {
+            width: 25%;
+        }
+
+        .glossary-table th:nth-child(3) {
+            width: 45%;
+        }
+
+        .glossary-table th:nth-child(4) {
+            width: 15%;
+            text-align: center;
+        }
+
+        .glossary-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+            font-size: 1.em;
+            color: #333;
+        }
+
+        .glossary-table td:nth-child(4) {
+            text-align: center;
+        }
+
+        /* ROW HOVER EFFECT - BLINKING HIGHLIGHT */
+        .glossary-table tbody tr {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .glossary-table tbody tr:hover {
+            background: linear-gradient(90deg, #fff3cd 0%, #ffe69c 100%);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            animation: rowBlink 0.6s ease-in-out 2;
+        }
+
+        @keyframes rowBlink {
+
+            0%,
+            100% {
+                background: linear-gradient(90deg, #fff3cd 0%, #ffe69c 100%);
+            }
+
+            50% {
+                background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
+            }
+        }
+
+        .glossary-table tbody tr:hover td {
+            color: #000;
+            font-weight: 500;
+        }
+
+
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .glossary-table {
+                font-size: 0.9em;
+            }
+
+            .glossary-table th,
+            .glossary-table td {
+                padding: 12px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .glossary-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .glossary-table th:nth-child(1),
+            .glossary-table th:nth-child(2),
+            .glossary-table th:nth-child(3),
+            .glossary-table th:nth-child(4) {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="save-download-section">
+        <button class="save-btn" onclick="saveAllChanges()">💾 Save All</button>
+        <button class="download-btn" onclick="downloadHTML()">⬇️ Download</button>
+    </div>
+
+    <div class="notification" id="notification">Changes saved successfully! ✓</div>
+
+    <div class="header">
+        <div class="header-center">
+            <h1>Master SOP Handbook</h1>
+            <p>Standard Operating Procedures Dashboard</p>
+        </div>
+
+        <div class="header-info">
+
+            <span>Team: L1 Connect hub support</span>
+            <span>October 2025</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-buttons">
+            <div class="main-btn" onclick="showSection(&#39;hub-portal&#39;)">
+                <div class="icon">🏬</div>
+                <h2>Hub Portal</h2>
+                <p>Inbound &amp; Outbound Operations</p>
+            </div>
+            <div class="main-btn" onclick="showSection(&#39;rider-app&#39;)">
+                <div class="icon">🛵</div>
+                <h2>Rider App</h2>
+                <p>Delivery &amp; Pickup Flows</p>
+            </div>
+            <div class="main-btn" onclick="showSection(&#39;dashboard&#39;)">
+                <div class="icon">📊</div>
+                <h2>Dashboard</h2>
+                <p>Live Tracking &amp; Reports</p>
+            </div>
+            <div class="main-btn" onclick="showSection(&#39;exception&#39;)">
+                <div class="icon">📝</div>
+                <h2>Exception Portal</h2>
+                <p>Shipment Tally &amp; Exceptions</p>
+            </div>
+            <div class="main-btn" onclick="showSection(&#39;valinor&#39;)">
+                <div class="icon">🖥</div>
+                <h2>Valinor</h2>
+                <p>Login Portal</p>
+            </div>
+            <div class="main-btn" onclick="showSection(&#39;glossary&#39;)">
+                <div class="icon">🔖</div>
+                <h2>Glossary</h2>
+                <p>Terms &amp; Definitions</p>
+            </div>
+        </div>
+        <!-- HUB PORTAL SECTION -->
+        <div id="hub-portal" class="content-area">
+            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+            <h2 style="color: #667eea; margin-bottom: 20px;">🏬 Hub Portal Activities</h2>
+
+            <div class="subsection-nav">
+                <button class="subsection-btn" onclick="showSubsection(&#39;hub&#39;, &#39;inbound&#39;, this)">📥 Inbound
+                    Process</button>
+            </div>
+
+            <div id="hub-inbound" class="sop-content">
+                <h3 style="color: #764ba2; margin-bottom: 25px;">📥 Inbound Process</h3>
+
+                <div class="detail-nav">
+                    <button class="detail-btn" onclick="showDetail(&#39;inbound&#39;, &#39;master-manifest&#39;, this)">1️⃣ Master
+                        Manifest Receive</button>
+                </div>
+
+                <div id="inbound-master-manifest" class="sop-detail">
+                    <div class="sop-step">
+                        <h3><span class="step-number">1.1 </span>Receiving Manifest from Master Manifest</h3>
+                        <div class="step-description">
+                            <b>This process involves receiving manifests that arrive at the hub via Master Manifest
+                                (MM). The Hub Incharge must verify and accept incoming shipments.</b>
+                        </div>
+
+                        <div class="step-image-container">
+
+                            <img src="./index_files/1.png" alt="Image 1" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1_6bEx-MTnzN59GGJU4GYO29wzS4B3GYg&#39;;
+                 this.onerror=function(){
+                    this.style.display=&#39;none&#39;;
+                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                 };">
+
+                        </div>
+                    </div>
+                    <p><strong>Step 1:</strong> Navigate to Hub Portal and click on "MM Reaching Hub".</p>
+
+                    <div class="route-map">
+                        <h4>🗺️ Process Flow:</h4>
+                        <div class="route-steps">
+                            <div class="route-step">MM Reaching Hub</div>
+                            <div class="route-arrow">→</div>
+                            <div class="route-step">Receive on Trip</div>
+                            <div class="route-arrow">→</div>
+                            <div class="route-step">Scan Seal &amp; Manifests</div>
+                            <div class="route-arrow">→</div>
+                            <div class="route-step">Submit &amp; Get POD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIDER APP SECTION -->
+    <div id="rider-app" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🛵 Rider App Operations</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection(&#39;rider&#39;, &#39;login&#39;, this)">🔐 Login
+                Process</button>
+        </div>
+
+        <div id="rider-login" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Rider Login Process</h3>
+
+            <div class="sop-step">
+                <h3><span class="step-number">3.3 </span>App Login &amp; Daily Check-in</h3>
+                <div class="step-image-container">
+                    <img src="./index_files/1.1.png" alt="MM Reaching Hub Button" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1f0harbLwM28uLgLYnWBMViGf27b33NZm&#39;; this.onerror=function(){this.style.display=&#39;none&#39;; this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;};">
+                </div>
+                <div class="step-image-container" onclick="uploadImage(this)">
+                    <p style="color: #667eea;">📸 Click here to upload image</p>
+                </div>
+                <p><strong>Step 1:</strong> Allow the app to access your <strong>Call Logs</strong> when prompted.
+                </p>
+
+                <div class="route-map">
+                    <h4>🗺️ Login Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Open App &amp; Choose Language</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Allow Call Logs</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Auto Verify via Call</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Allow Notifications</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Resume Delivering</div>
+                    </div>
+                </div>
+
+                <div class="important-note">
+                    <h4>🚴‍♂️ Rider Login Process</h4>
+                    <p><strong>Note:</strong> If the Rider does not receive the OTP from the <strong>Shadowfax
+                            Partner</strong> platform, kindly ask the Rider to <strong>uninstall the Truecaller
+                            app</strong> and <strong>unblock the spam number</strong> from the phone settings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">📊 Dashboard &amp; Reports</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection(&#39;dash&#39;, &#39;live-tracking&#39;, this)">🔴 Live
+                Dashboard</button>
+        </div>
+
+        <div id="dash-live-tracking" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔴 Live Dashboard</h3>
+
+            <div class="sop-step">
+                <h3>Real-time Hub &amp; Shipment Monitoring</h3>
+                <p><strong>Live:</strong> Data is updated immediately or continuously, showing the current status.
+                </p>
+
+                <div class="step-image-container">
+                    <img src="./index_files/1.2.png" alt="SOP Image" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV&#39;; 
+                 this.onerror=function(){
+                    this.style.display=&#39;none&#39;; 
+                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> <strong>GEM – Delivery Champion</strong><br>
+                    Tracks overall hub performance, rider ranking, and delivery efficiency.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Login</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Select Region/Hub</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Monitor Live Shipments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXCEPTION PORTAL SECTION -->
+    <div id="exception" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">📝 Exception Portal</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection(&#39;exc&#39;, &#39;tally&#39;, this)">📊 Shipment Tally</button>
+        </div>
+
+        <div id="exc-tally" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">📊 Shipment Tally</h3>
+            <div class="sop-step">
+                <h3>Daily Shipment Reconciliation</h3>
+                <p><strong>Shipment Tally:</strong> The process of counting and verifying incoming shipments against
+                    the manifest.</p>
+
+
+                <div class="step-image-container">
+                    <img src="./index_files/1.7.png" alt="Image 7" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1pZ5COGaJQ8GObQDElj3TpTJp6CQ_icGZ&#39;;
+                 this.onerror=function(){
+                    this.style.display=&#39;none&#39;;
+                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> Click on <strong>Shipment Tally</strong>.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Shipments Arrive at Hub</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Check Against AWB</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Verify Accuracy &amp; Confirm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VALINOR SECTION -->
+    <div id="valinor" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🖥 Valinor Login Portal</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection(&#39;val&#39;, &#39;access&#39;, this)">🔐 Access &amp;
+                Login</button>
+        </div>
+
+        <div id="val-access" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Access &amp; Login</h3>
+            <div class="sop-step">
+                <h3>Valinor Portal Access</h3>
+                <p><strong>Valinor Portal:</strong> Steps to securely log in to the Valinor portal.</p>
+
+
+                <div class="step-image-container">
+                    <img src="./index_files/2.png" alt="Image 1" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1V8kz2UEm9TzCtPJrlm7hudRTTIvPyrVq&#39;;
+                 this.onerror=function(){
+                    this.style.display=&#39;none&#39;;
+                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> Enter your <strong>contact number</strong> and click on <strong>Send
+                        OTP</strong>.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Send OTP</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Enter OTP</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Submit</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Access Portals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOSSARY SECTION -->
+    <div id="glossary" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🔖 Glossary &amp; Definitions</h2>
+
+        <button class="subsection-btn" style="margin-bottom: 20px; background: #667eea; color: white;">
+            📖 Key Terms
+        </button>
+
+        <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <table class="glossary-table">
+                <thead>
+                    <tr>
+                        <th>Term / Acronyms</th>
+                        <th>Full Form / Meaning</th>
+                        <th>Description</th>
+                        <th style="text-align: center;">Link to SOP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 600;">AWB</td>
+                        <td>Air Waybill</td>
+                        <td>Unique tracking number assigned to each shipment for identification and tracking
+                            purposes.</td>
+                        <td style="text-align: center;">
+                            <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
+                                👉 Go to SOP
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">MM</td>
+                        <td>Master Manifest</td>
+                        <td>A document that consolidates multiple shipments into one transport unit.</td>
+                        <td style="text-align: center;">
+                            <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
+                                👉 Go to SOP
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    
+    
+
+    <script>
+        // Image Storage Object - stores images as base64
+        const imageStorage = {};
+
+        // Check if document has been saved
+        function isDocumentSaved() {
+            // Check if all images are already base64 (indicating document was saved)
+            const images = document.querySelectorAll('img');
+            let allSaved = true;
+
+            for (const img of images) {
+                if (!img.src.startsWith('data:')) {
+                    allSaved = false;
+                    break;
+                }
+            }
+
+            return allSaved;
+        }
+
+        // Handle Ctrl+S / Cmd+S to save and download
+        function setupSaveHandler() {
+            document.addEventListener('keydown', async function (e) {
+                // Check for Ctrl+S (Windows/Linux) or Cmd+S (Mac)
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
+                    e.preventDefault();
+
+                    // Check if already saved
+                    if (isDocumentSaved()) {
+                        const notification = document.getElementById('notification');
+                        notification.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 5px;">ℹ️ Already Saved</div>
+                    <div style="font-size: 13px;">This document is already in read-only mode</div>
+                `;
+                        notification.style.background = '#6b7280';
+                        notification.classList.add('show');
+                        setTimeout(() => notification.classList.remove('show'), 2000);
+                        return false;
+                    }
+
+                    // Trigger the save and download process
+                    await saveAllChanges();
+                    return false;
+                }
+            });
+        }
+
+        // Disable right-click, view source, and inspect for saved documents
+        function applySavedDocumentProtection() {
+            // Disable right-click
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            document.addEventListener('keydown', function (e) {
+                // F12
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+Shift+I (Inspect)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+Shift+J (Console)
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+U (View Source)
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Cmd+Option+I (Mac Inspect)
+                if (e.metaKey && e.altKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Cmd+Option+J (Mac Console)
+                if (e.metaKey && e.altKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Cmd+U (Mac View Source)
+                if (e.metaKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        }
+
+        // Convert Google Drive URL to direct image URL
+        function convertGoogleDriveURL(url) {
+            // Extract file ID from various Google Drive URL formats
+            let fileId = null;
+
+            if (url.includes('drive.google.com')) {
+                // Format: https://drive.google.com/file/d/FILE_ID/view
+                const match1 = url.match(/\/file\/d\/([^\/]+)/);
+                if (match1) fileId = match1[1];
+
+                // Format: https://drive.google.com/open?id=FILE_ID
+                const match2 = url.match(/[?&]id=([^&]+)/);
+                if (match2) fileId = match2[1];
+
+                // Format: https://drive.google.com/thumbnail?id=FILE_ID
+                const match3 = url.match(/[?&]id=([^&]+)/);
+                if (match3) fileId = match3[1];
+
+                // Format: https://drive.google.com/uc?export=view&id=FILE_ID
+                const match4 = url.match(/id=([^&]+)/);
+                if (match4) fileId = match4[1];
+            }
+
+            if (fileId) {
+                // Return the direct download URL
+                return `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
+
+            return url;
+        }
+
+        // Fetch image with CORS proxy if needed
+        async function fetchImageWithProxy(url) {
+            try {
+                // Try direct fetch first
+                const response = await fetch(url);
+                if (response.ok) {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.log('Direct fetch failed, trying with CORS proxy...');
+            }
+
+            // If direct fetch fails, try with CORS proxy
+            try {
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyUrl);
+                if (response.ok) {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.warn('CORS proxy fetch also failed:', error);
+            }
+
+            throw new Error('Failed to fetch image');
+        }
+
+        // Convert image URL to base64
+        async function convertImageToBase64(url) {
+            try {
+                // Convert Google Drive URLs to direct download URLs
+                const directUrl = convertGoogleDriveURL(url);
+
+                const blob = await fetchImageWithProxy(directUrl);
+
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            } catch (error) {
+                console.error('Failed to convert image to base64:', url, error);
+                throw error;
+            }
+        }
+
+        // Convert existing file path images to base64 on page load
+        async function convertExistingImages() {
+            const images = document.querySelectorAll('img[src^="/Images"], img[src^="Images"], img[src^="./Images"], img[src*="drive.google.com"], img[src^="http"]');
+
+            console.log(`Found ${images.length} images to convert`);
+            let converted = 0;
+
+            for (const img of images) {
+                try {
+                    const originalSrc = img.src;
+
+                    // Skip if already base64
+                    if (originalSrc.startsWith('data:')) {
+                        console.log('Image already in base64 format, skipping:', originalSrc.substring(0, 50));
+                        continue;
+                    }
+
+                    let blob;
+
+                    // Handle Google Drive URLs
+                    if (originalSrc.includes('drive.google.com')) {
+                        const directUrl = convertGoogleDriveURL(originalSrc);
+                        blob = await fetchImageWithProxy(directUrl);
+                    } else {
+                        // Handle regular URLs and relative paths
+                        const response = await fetch(originalSrc);
+                        blob = await response.blob();
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const imageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                        const imageData = event.target.result;
+                        imageStorage[imageId] = imageData;
+
+                        img.setAttribute('data-image-id', imageId);
+                        img.setAttribute('data-original-src', originalSrc);
+                        img.src = imageData;
+
+                        converted++;
+                        console.log(`Converted ${converted}/${images.length}: ${originalSrc}`);
+                    };
+                    reader.readAsDataURL(blob);
+
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                } catch (error) {
+                    console.warn('Could not convert image:', img.src, error);
+                }
+            }
+
+            console.log(`Conversion complete! ${converted} images embedded.`);
+        }
+
+        function uploadImage(container) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+
+            input.onchange = function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const imageId = 'img_' + Date.now();
+                        const imageData = event.target.result;
+                        imageStorage[imageId] = imageData;
+
+                        container.innerHTML = `
+                    <div class="image-wrapper">
+                        <img src="${imageData}" alt="SOP Image" data-image-id="${imageId}">
+                    </div>
+                `;
+                        container.classList.add('has-image');
+
+                        const img = container.querySelector('img');
+                        img.onclick = function (e) {
+                            e.stopPropagation();
+                            if (confirm('Do you want to replace this image?')) {
+                                uploadImage(container);
+                            }
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // NEW COMBINED FUNCTION - Save All and Auto Download
+        async function saveAllChanges() {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 1/3: Embedding Images...</div>
+        <div style="font-size: 13px;">Converting all images to base64 format...</div>
+    `;
+            notification.style.background = '#3b82f6';
+            notification.classList.add('show');
+
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            const allImages = document.querySelectorAll('img');
+            let savedCount = 0;
+            let alreadySavedCount = 0;
+            let failedCount = 0;
+
+            // Embed all images first
+            for (const img of allImages) {
+                if (img.src.startsWith('data:')) {
+                    alreadySavedCount++;
+                    continue;
+                }
+
+                const imageId = img.getAttribute('data-image-id');
+                if (imageId && imageStorage[imageId]) {
+                    img.src = imageStorage[imageId];
+                    savedCount++;
+                    continue;
+                }
+
+                try {
+                    let blob;
+
+                    if (img.src.includes('drive.google.com')) {
+                        const directUrl = convertGoogleDriveURL(img.src);
+                        blob = await fetchImageWithProxy(directUrl);
+                    } else {
+                        const response = await fetch(img.src);
+                        blob = await response.blob();
+                    }
+
+                    const base64 = await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.readAsDataURL(blob);
+                    });
+
+                    const newImageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    imageStorage[newImageId] = base64;
+                    img.setAttribute('data-image-id', newImageId);
+                    img.src = base64;
+                    savedCount++;
+                } catch (error) {
+                    console.warn('Could not save image:', img.src, error);
+                    failedCount++;
+                }
+            }
+
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 2/3: Creating File...</div>
+        <div style="font-size: 13px;">Preparing complete HTML file for download...</div>
+    `;
+
+            // Wait a moment to ensure all images are processed
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Now trigger the download
+            await downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount);
+
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 3/3: Finalizing...</div>
+        <div style="font-size: 13px;">Hiding buttons and securing document...</div>
+    `;
+
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Hide the Save/Download section
+            const saveDownloadSection = document.querySelector('.save-download-section');
+            if (saveDownloadSection) {
+                saveDownloadSection.style.display = 'none';
+            }
+
+            // Apply protection
+            applySavedDocumentProtection();
+
+            console.log('✅ Process Complete: File downloaded and ready to share!');
+        }
+
+        // Helper function for download after save
+        async function downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount) {
+            const notificationEl = document.getElementById('notification');
+            const startTime = Date.now();
+
+            const allSections = document.querySelectorAll('.content-area');
+            const allSubsections = document.querySelectorAll('.sop-content');
+            const allDetails = document.querySelectorAll('.sop-detail');
+
+            const originalSectionStates = Array.from(allSections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalSubsectionStates = Array.from(allSubsections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalDetailStates = Array.from(allDetails).map(el => ({
+                element: el,
+                display: el.style.display
+            }));
+
+            allSections.forEach(section => section.classList.add('active'));
+            allSubsections.forEach(subsection => subsection.classList.add('active'));
+            allDetails.forEach(detail => detail.style.display = 'block');
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            const clonedDoc = document.documentElement.cloneNode(true);
+
+            originalSectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalSubsectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalDetailStates.forEach(state => {
+                state.element.style.display = state.display;
+            });
+
+            // Remove interactive elements from cloned document
+            const clonedSections = clonedDoc.querySelectorAll('.content-area');
+            const clonedSubsections = clonedDoc.querySelectorAll('.sop-content');
+            const clonedDetails = clonedDoc.querySelectorAll('.sop-detail');
+
+            clonedSections.forEach(section => section.classList.add('active'));
+            clonedSubsections.forEach(subsection => subsection.classList.add('active'));
+            clonedDetails.forEach(detail => detail.style.display = 'block');
+
+            const imageContainers = clonedDoc.querySelectorAll('.step-image-container');
+            imageContainers.forEach(container => {
+                container.removeAttribute('onclick');
+                container.style.cursor = 'default';
+            });
+
+            const clonedImages = clonedDoc.querySelectorAll('img');
+            clonedImages.forEach(img => {
+                img.removeAttribute('data-image-id');
+                img.removeAttribute('data-original-src');
+                img.removeAttribute('onclick');
+                img.removeAttribute('onerror');
+                img.style.cursor = 'default';
+            });
+
+            const mainButtons = clonedDoc.querySelectorAll('.main-btn');
+            mainButtons.forEach(btn => btn.remove());
+
+            const subsectionNav = clonedDoc.querySelectorAll('.subsection-nav');
+            subsectionNav.forEach(nav => nav.remove());
+
+            const detailNav = clonedDoc.querySelectorAll('.detail-nav');
+            detailNav.forEach(nav => nav.remove());
+
+            const backButtons = clonedDoc.querySelectorAll('[onclick*="Back"]');
+            backButtons.forEach(btn => btn.remove());
+
+            const saveDownloadSection = clonedDoc.querySelector('.save-download-section');
+            if (saveDownloadSection) {
+                saveDownloadSection.remove();
+            }
+
+            const notification = clonedDoc.querySelector('.notification');
+            if (notification) {
+                notification.remove();
+            }
+
+            const scripts = clonedDoc.querySelectorAll('script');
+            scripts.forEach(script => {
+                script.remove();
+            });
+
+            const bodyElement = clonedDoc.querySelector('body');
+            if (bodyElement) {
+                const readOnlyBanner = clonedDoc.createElement('div');
+                readOnlyBanner.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        `;
+                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
+                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
+            }
+
+            const styleElement = document.getElementById('sop-image-styles');
+            if (styleElement && !clonedDoc.getElementById('sop-image-styles')) {
+                const clonedHead = clonedDoc.querySelector('head');
+                if (clonedHead) {
+                    clonedHead.appendChild(styleElement.cloneNode(true));
+                }
+            }
+
+            const readOnlyStyles = clonedDoc.createElement('style');
+            readOnlyStyles.textContent = `
+        body {
+            overflow-y: auto !important;
+        }
+        .content-area {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 40px !important;
+            border-bottom: 3px solid #e5e7eb;
+            padding-bottom: 40px;
+        }
+        .sop-content {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 30px !important;
+        }
+        .sop-detail {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 20px !important;
+        }
+    `;
+            const clonedHead = clonedDoc.querySelector('head');
+            if (clonedHead) {
+                clonedHead.appendChild(readOnlyStyles);
+            }
+
+            const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const actualFileSize = blob.size;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().slice(0, 10);
+            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
+
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
+
+            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+            const totalImages = savedCount + alreadySavedCount;
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 5px;">✅ Complete!</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${totalImages} images embedded and downloaded</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
+        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
+        ${failedCount > 0 ? `<div style="font-size: 12px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedCount} images failed</div>` : ''}
+        <div style="font-size: 12px; margin-top: 5px;">🔒 Document is now in read-only mode</div>
+    `;
+            notificationEl.style.background = failedCount > 0 ? '#f59e0b' : '#10b981';
+
+            setTimeout(() => {
+                notificationEl.classList.remove('show');
+            }, 6000);
+        }
+
+        // ORIGINAL STANDALONE DOWNLOAD FUNCTION (kept for compatibility)
+        async function downloadHTML() {
+            const notificationEl = document.getElementById('notification');
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Fast Download Mode</div>
+        <div style="font-size: 13px;">Preparing document with all images...</div>
+    `;
+            notificationEl.style.background = '#8b5cf6';
+            notificationEl.classList.add('show');
+
+            const startTime = Date.now();
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            const allSections = document.querySelectorAll('.content-area');
+            const allSubsections = document.querySelectorAll('.sop-content');
+            const allDetails = document.querySelectorAll('.sop-detail');
+
+            const originalSectionStates = Array.from(allSections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalSubsectionStates = Array.from(allSubsections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalDetailStates = Array.from(allDetails).map(el => ({
+                element: el,
+                display: el.style.display
+            }));
+
+            allSections.forEach(section => section.classList.add('active'));
+            allSubsections.forEach(subsection => subsection.classList.add('active'));
+            allDetails.forEach(detail => detail.style.display = 'block');
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            const clonedDoc = document.documentElement.cloneNode(true);
+
+            originalSectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalSubsectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalDetailStates.forEach(state => {
+                state.element.style.display = state.display;
+            });
+
+            const images = document.querySelectorAll('img');
+            const clonedImages = clonedDoc.querySelectorAll('img');
+
+            const totalImages = images.length;
+            let successfulEmbeds = 0;
+            let failedEmbeds = 0;
+            let estimatedSize = 0;
+
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Processing ${totalImages} Images...</div>
+        <div style="font-size: 13px;">Please wait, this may take a moment...</div>
+    `;
+
+            const imagePromises = [];
+
+            for (let index = 0; index < images.length; index++) {
+                const originalImg = images[index];
+                const clonedImg = clonedImages[index];
+
+                if (!clonedImg) continue;
+
+                const imagePromise = (async () => {
+                    let imageSize = 0;
+
+                    if (originalImg.src.startsWith('data:')) {
+                        clonedImg.src = originalImg.src;
+                        imageSize = originalImg.src.length;
+                        successfulEmbeds++;
+                    } else if (originalImg.hasAttribute('data-image-id') && imageStorage[originalImg.getAttribute('data-image-id')]) {
+                        const storedData = imageStorage[originalImg.getAttribute('data-image-id')];
+                        clonedImg.src = storedData;
+                        imageSize = storedData.length;
+                        successfulEmbeds++;
+                    } else {
+                        try {
+                            let blob;
+
+                            // Handle Google Drive URLs
+                            if (originalImg.src.includes('drive.google.com')) {
+                                const directUrl = convertGoogleDriveURL(originalImg.src);
+                                blob = await fetchImageWithProxy(directUrl);
+                            } else {
+                                const response = await fetch(originalImg.src);
+                                blob = await response.blob();
+                            }
+
+                            const base64 = await new Promise((resolve) => {
+                                const reader = new FileReader();
+                                reader.onloadend = () => resolve(reader.result);
+                                reader.readAsDataURL(blob);
+                            });
+
+                            clonedImg.src = base64;
+                            imageSize = base64.length;
+                            successfulEmbeds++;
+                        } catch (error) {
+                            console.warn('Could not embed image:', originalImg.src, error);
+                            failedEmbeds++;
+                        }
+                    }
+
+                    clonedImg.removeAttribute('data-image-id');
+                    clonedImg.removeAttribute('data-original-src');
+                    clonedImg.removeAttribute('onclick');
+                    clonedImg.removeAttribute('onerror');
+                    clonedImg.style.cursor = 'default';
+
+                    return imageSize;
+                })();
+
+                imagePromises.push(imagePromise);
+
+                if (imagePromises.length >= 50 || index === images.length - 1) {
+                    const sizes = await Promise.all(imagePromises);
+                    estimatedSize += sizes.reduce((a, b) => a + b, 0);
+                    imagePromises.length = 0;
+
+                    if (index < images.length - 1) {
+                        const progress = Math.round(((index + 1) / totalImages) * 100);
+                        notificationEl.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Processing Images... ${progress}%</div>
+                    <div style="font-size: 13px;">${index + 1} of ${totalImages} completed</div>
+                `;
+                    }
+                }
+            }
+
+            const clonedSections = clonedDoc.querySelectorAll('.content-area');
+            const clonedSubsections = clonedDoc.querySelectorAll('.sop-content');
+            const clonedDetails = clonedDoc.querySelectorAll('.sop-detail');
+
+            clonedSections.forEach(section => section.classList.add('active'));
+            clonedSubsections.forEach(subsection => subsection.classList.add('active'));
+            clonedDetails.forEach(detail => detail.style.display = 'block');
+
+            const imageContainers = clonedDoc.querySelectorAll('.step-image-container');
+            imageContainers.forEach(container => {
+                container.removeAttribute('onclick');
+                container.style.cursor = 'default';
+            });
+
+            const mainButtons = clonedDoc.querySelectorAll('.main-btn');
+            mainButtons.forEach(btn => btn.remove());
+
+            const subsectionNav = clonedDoc.querySelectorAll('.subsection-nav');
+            subsectionNav.forEach(nav => nav.remove());
+
+            const detailNav = clonedDoc.querySelectorAll('.detail-nav');
+            detailNav.forEach(nav => nav.remove());
+
+            const backButtons = clonedDoc.querySelectorAll('[onclick*="Back"]');
+            backButtons.forEach(btn => btn.remove());
+
+            const saveDownloadSection = clonedDoc.querySelector('.save-download-section');
+            if (saveDownloadSection) {
+                saveDownloadSection.remove();
+            }
+
+            const notification = clonedDoc.querySelector('.notification');
+            if (notification) {
+                notification.remove();
+            }
+
+            const scripts = clonedDoc.querySelectorAll('script');
+            scripts.forEach(script => {
+                script.remove();
+            });
+
+            const headerElements = clonedDoc.querySelectorAll('body > *');
+            headerElements.forEach(el => {
+                if (el.textContent.includes('Master SOP Handbook') &&
+                    el.textContent.includes('Standard Operating Procedures Dashboard')) {
+                    el.remove();
+                }
+            });
+
+            const bodyElement = clonedDoc.querySelector('body');
+            if (bodyElement) {
+                const readOnlyBanner = clonedDoc.createElement('div');
+                readOnlyBanner.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        `;
+                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
+                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
+            }
+
+            const styleElement = document.getElementById('sop-image-styles');
+            if (styleElement && !clonedDoc.getElementById('sop-image-styles')) {
+                const clonedHead = clonedDoc.querySelector('head');
+                if (clonedHead) {
+                    clonedHead.appendChild(styleElement.cloneNode(true));
+                }
+            }
+
+            const readOnlyStyles = clonedDoc.createElement('style');
+            readOnlyStyles.textContent = `
+        body {
+            overflow-y: auto !important;
+        }
+        .content-area {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 40px !important;
+            border-bottom: 3px solid #e5e7eb;
+            padding-bottom: 40px;
+        }
+        .sop-content {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 30px !important;
+        }
+        .sop-detail {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            margin-bottom: 20px !important;
+        }
+    `;
+            const clonedHead = clonedDoc.querySelector('head');
+            if (clonedHead) {
+                clonedHead.appendChild(readOnlyStyles);
+            }
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">📦 Creating File...</div>
+        <div style="font-size: 13px;">Finalizing your document...</div>
+    `;
+
+            const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const actualFileSize = blob.size;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().slice(0, 10);
+            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
+
+            link.click();
+
+            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">✅ Download Started!</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${successfulEmbeds} of ${totalImages} images embedded</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
+        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
+        ${failedEmbeds > 0 ? `<div style="font-size: 13px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedEmbeds} images failed</div>` : ''}
+    `;
+            notificationEl.style.background = failedEmbeds > 0 ? '#f59e0b' : '#10b981';
+
+            setTimeout(() => {
+                notificationEl.classList.remove('show');
+            }, 6000);
+        }
+
+        function showSection(sectionId) {
+            const allSections = document.querySelectorAll('.content-area');
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const allButtons = document.querySelectorAll('.main-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            event.target.closest('.main-btn').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideAllSections() {
+            const allSections = document.querySelectorAll('.content-area');
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const allButtons = document.querySelectorAll('.main-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSubsection(section, subsection, button) {
+            const parent = button.closest('.subsection-nav');
+            const allSubButtons = parent.querySelectorAll('.subsection-btn');
+            allSubButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            button.classList.add('active');
+
+            const allContents = button.closest('.content-area').querySelectorAll('.sop-content');
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const selectedContent = document.getElementById(`${section}-${subsection}`);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+
+                const allDetails = selectedContent.querySelectorAll('.sop-detail');
+                allDetails.forEach(detail => {
+                    detail.style.display = 'none';
+                });
+
+                const firstDetail = selectedContent.querySelector('.sop-detail');
+                if (firstDetail) {
+                    firstDetail.style.display = 'block';
+                }
+
+                const detailButtons = selectedContent.querySelectorAll('.detail-btn');
+                detailButtons.forEach((btn, index) => {
+                    if (index === 0) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        function showDetail(subsection, detail, button) {
+            const parent = button.closest('.detail-nav');
+            const allDetailButtons = parent.querySelectorAll('.detail-btn');
+            allDetailButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            button.classList.add('active');
+
+            const sopContent = button.closest('.sop-content');
+            const allDetails = sopContent.querySelectorAll('.sop-detail');
+            allDetails.forEach(d => {
+                d.style.display = 'none';
+            });
+
+            const selectedDetail = document.getElementById(`${subsection}-${detail}`);
+            if (selectedDetail) {
+                selectedDetail.style.display = 'block';
+            }
+        }
+
+        function navigateToSOP(section, subsection, detail) {
+            hideAllSections();
+
+            const sectionElement = document.getElementById(section);
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+
+                const mainBtn = document.querySelector(`[onclick="showSection('${section}')"]`);
+                if (mainBtn) {
+                    mainBtn.classList.add('active');
+                }
+
+                setTimeout(() => {
+                    const subsectionBtn = sectionElement.querySelector(`[onclick*="'${subsection}'"]`);
+                    if (subsectionBtn) {
+                        subsectionBtn.click();
+
+                        if (detail) {
+                            setTimeout(() => {
+                                const detailBtn = sectionElement.querySelector(`[onclick*="'${detail}'"]`);
+                                if (detailBtn) {
+                                    detailBtn.click();
+                                    detailBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                }
+                            }, 200);
+                        } else {
+                            subsectionBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                }, 300);
+            }
+
+            const notification = document.getElementById('notification');
+            notification.textContent = 'Navigating to SOP... 🎯';
+            notification.style.background = '#667eea';
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        function toggleSOPDropdown(termId, section, subsection, detail, button) {
+            const dropdownRow = document.getElementById('sop-dropdown-' + termId);
+            const allDropdowns = document.querySelectorAll('.sop-dropdown-row');
+            const allButtons = document.querySelectorAll('.detail-btn');
+
+            allDropdowns.forEach(dropdown => {
+                if (dropdown.id !== 'sop-dropdown-' + termId) {
+                    dropdown.classList.remove('show');
+                }
+            });
+
+            allButtons.forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove('active-dropdown');
+                }
+            });
+
+            if (dropdownRow.classList.contains('show')) {
+                dropdownRow.classList.remove('show');
+                button.classList.remove('active-dropdown');
+            } else {
+                dropdownRow.classList.add('show');
+                button.classList.add('active-dropdown');
+
+                setTimeout(() => {
+                    dropdownRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        window.onload = async function () {
+            await convertExistingImages();
+
+            // Setup Ctrl+S / Cmd+S save handler
+            setupSaveHandler();
+
+            // Check if document is already saved
+            if (isDocumentSaved()) {
+                // Hide Save All and Download buttons if they exist
+                const saveDownloadSection = document.querySelector('.save-download-section');
+                if (saveDownloadSection) {
+                    saveDownloadSection.style.display = 'none';
+                }
+
+                // Apply security protections
+                applySavedDocumentProtection();
+
+                console.log('Document is in viewer mode - Read-only protections enabled');
+            } else {
+                // Show instruction for first-time users
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    notification.innerHTML = `
+                <div style="font-weight: bold; margin-bottom: 5px;">💡 Quick Tip</div>
+                <div style="font-size: 13px;">Press <strong>Ctrl+S</strong> (or Cmd+S on Mac) to save this file with all images embedded!</div>
+            `;
+                    notification.style.background = '#6366f1';
+                    notification.classList.add('show');
+                    setTimeout(() => notification.classList.remove('show'), 5000);
+                }
+            }
+
+            if (!document.querySelector('#sop-image-styles')) {
+                const style = document.createElement('style');
+                style.id = 'sop-image-styles';
+                style.textContent = `
+            .step-image-container {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f5f5f5;
+                border-radius: 8px;
+                padding: 10px;
+                box-sizing: border-box;
+                min-height: 200px;
+            }
+
+            .image-wrapper {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-height: 500px;
+            }
+
+            .step-image-container img {
+                max-width: 100%;
+                max-height: 500px;
+                height: auto;
+                object-fit: contain;
+                display: block;
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+
+            @media screen and (max-width: 768px) {
+                .step-image-container img {
+                    max-height: 400px;
+                }
+                
+                .image-wrapper {
+                    max-height: 400px;
+                }
+            }
+
+            @media screen and (min-width: 1200px) {
+                .step-image-container img {
+                    max-height: 600px;
+                }
+
+                .image-wrapper {
+                    max-height: 600px;
+                }
+            }
+
+            /* Hide Save/Download section - no longer needed */
+            .save-download-section {
+                display: none !important;
+            }
+        `;
+                document.head.appendChild(style);
+            }
+        };
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
