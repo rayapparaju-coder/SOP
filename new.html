@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<!-- saved from url=(0030)http://127.0.0.1:5500/new.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MASTER SOP HANDBOOK</title>
 
@@ -98,6 +99,59 @@
             overflow: hidden;
         }
 
+        .step-image-container {
+            width: 100%;
+            margin: 15px 0;
+            padding: 0;
+        }
+
+        .step-image-container .image-wrapper {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .step-image-container {
+                margin: 10px 0;
+            }
+
+            .step-image-container img {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+        }
+
+        /* Splash Effect on Buttons */
+        .save-btn::before,
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .save-btn:active::before,
+        .download-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .save-btn:hover,
         .download-btn:hover {
             background: #3d8f44;
@@ -111,6 +165,35 @@
 
         .save-btn:hover {
             background: #5568d3;
+        }
+
+        /* Ripple Effect */
+        .save-btn::after,
+        .download-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: translate(-50%, -50%);
+            animation: ripple 1.5s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
         }
 
         .header {
@@ -128,6 +211,8 @@
             position: relative;
             overflow: hidden;
         }
+
+
 
         .header-center {
             display: flex;
@@ -161,6 +246,20 @@
         .header-center h1::before {
             content: "📋 ";
             display: inline-block;
+            animation: iconSpin 3s linear infinite;
+        }
+
+        @keyframes iconSpin {
+
+            0%,
+            90%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            95% {
+                transform: rotate(15deg);
+            }
         }
 
         .header-center p {
@@ -188,6 +287,31 @@
         .header-info span {
             border-right: 1px solid #ccc;
             padding-right: 15px;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .header-info span:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .header-info span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .header-info span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .header-info span:last-child {
@@ -215,10 +339,41 @@
             overflow: hidden;
         }
 
+        /* Splash Background Effect */
+        .main-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+            z-index: 0;
+        }
+
+        .main-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .main-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
         .main-btn:hover {
             transform: translateY(-5px) scale(1.03);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             border-color: #667eea;
+            color: white;
+        }
+
+        .main-btn:hover h2,
+        .main-btn:hover p {
+            color: white;
         }
 
         .main-btn.active {
@@ -227,10 +382,63 @@
             border-color: #764ba2;
         }
 
+        .main-btn:nth-child(1) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+        }
+
+        .main-btn:nth-child(2) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .main-btn:nth-child(3) .icon {
+            animation: slideUpDown 2s ease-in-out infinite;
+        }
+
+        .main-btn:nth-child(4) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .main-btn:nth-child(5) .icon {
+            animation: slideUpDown 2s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .main-btn:nth-child(6) .icon {
+            animation: slideLeftRight 2s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes slideLeftRight {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes slideUpDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         .main-btn h2 {
             font-size: 1.5em;
             margin-bottom: 10px;
             color: #333;
+            transition: color 0.3s ease;
         }
 
         .main-btn.active h2,
@@ -241,6 +449,7 @@
         .main-btn p {
             color: #666;
             font-size: 0.9em;
+            transition: color 0.3s ease;
         }
 
         .icon {
@@ -291,18 +500,42 @@
             transition: all 0.3s ease;
             font-weight: 600;
             color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Button Splash Effect */
+        .subsection-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            border-radius: 50%;
+        }
+
+        .subsection-btn:active::before {
+            width: 300px;
+            height: 300px;
         }
 
         .subsection-btn:hover {
             background: #667eea;
             color: white;
             border-color: #667eea;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
         .subsection-btn.active {
             background: #667eea;
             color: white;
             border-color: #764ba2;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .sop-content {
@@ -311,6 +544,19 @@
 
         .sop-content.active {
             display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .detail-nav {
@@ -333,16 +579,54 @@
             font-weight: 600;
             color: #5568d3;
             font-size: 15px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Wave Effect on Hover */
+        .detail-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(85, 104, 211, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .detail-btn:hover::after {
+            width: 400px;
+            height: 400px;
         }
 
         .detail-btn:hover {
             background: #5568d3;
             color: white;
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 0 4px 12px rgba(85, 104, 211, 0.3);
         }
 
         .detail-btn.active {
             background: #5568d3;
             color: white;
+            box-shadow: 0 4px 12px rgba(85, 104, 211, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 12px rgba(85, 104, 211, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 8px 20px rgba(85, 104, 211, 0.6);
+            }
         }
 
         .sop-step {
@@ -351,6 +635,12 @@
             margin-bottom: 25px;
             border-radius: 10px;
             border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .sop-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .sop-step h3 {
@@ -366,12 +656,21 @@
         }
 
         .step-image-container {
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .step-image-container {
             background: linear-gradient(135deg, #e0e7ff 0%, #f0e7ff 100%);
             padding: 20px;
             border-radius: 8px;
             text-align: center;
             border: 2px dashed #667eea;
             margin: 15px 0;
+            position: relative;
             min-height: 150px;
             display: flex;
             flex-direction: column;
@@ -379,34 +678,6 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .step-image-container:hover {
-            background: linear-gradient(135deg, #d0d7ff 0%, #e0d7ff 100%);
-        }
-
-        .step-image-container.has-image {
-            background: white;
-            border: 2px solid #e0e0e0;
-            cursor: default;
-            padding: 0;
-        }
-
-        .step-image-container img {
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            max-height: none;
-            object-fit: contain;
-            border-radius: 4px;
-            display: block;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-        }
-
-        /* For images that need to be larger */
-        .step-image-container.has-image img {
-            cursor: pointer;
         }
 
         .route-map {
@@ -433,15 +704,46 @@
             background: #5568d3;
             padding: 10px 15px;
             border-radius: 6px;
+            border: 2px solid #5568d3;
             color: white;
             font-weight: 600;
             font-size: 0.9em;
+            animation: routeStepPop 0.5s ease backwards;
+        }
+
+        .route-step:nth-child(odd) {
+            animation-delay: calc(var(--index, 0) * 0.1s);
+        }
+
+        @keyframes routeStepPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .route-arrow {
             color: #5568d3;
             font-size: 1.5em;
             font-weight: bold;
+            animation: arrowBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes arrowBounce {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
         }
 
         .back-btn {
@@ -455,11 +757,29 @@
             font-weight: 600;
             margin-bottom: 20px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
         }
 
         .back-btn:hover {
             background: #667eea;
             color: white;
+            transform: translateX(-5px);
         }
 
         .notification {
@@ -473,11 +793,11 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 1001;
             display: none;
+            animation: slideInRight 0.3s ease;
         }
 
         .notification.show {
             display: block;
-            animation: slideInRight 0.3s ease;
         }
 
         @keyframes slideInRight {
@@ -492,126 +812,103 @@
             }
         }
 
-        .important-note {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff4e5;
-            border-left: 5px solid #ff9900;
-            border-radius: 8px;
-        }
-
-        .important-note h4 {
-            margin-top: 0;
-            color: #cc6600;
-        }
-
-        /* Modal Styles */
-        .upload-modal {
+        /* Floating Elements */
+        .floating-shape {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatRandom 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .upload-modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .modal-content h3 {
-            margin-top: 0;
-            color: #667eea;
-        }
-
-        .modal-btn {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .modal-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .modal-btn.primary {
+        .floating-shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
             background: #667eea;
-            color: white;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
         }
 
-        .modal-btn.success {
+        .floating-shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
             background: #4ba254;
-            color: white;
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
         }
 
-        .modal-btn.secondary {
-            background: #f5f5f5;
-            color: #333;
+        .floating-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background: #764ba2;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 6s;
         }
 
-        #drive-link-container {
-            display: none;
-            margin-top: 20px;
+        @keyframes floatRandom {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(50px, -50px) rotate(90deg);
+            }
+
+            50% {
+                transform: translate(-30px, 80px) rotate(180deg);
+            }
+
+            75% {
+                transform: translate(70px, 30px) rotate(270deg);
+            }
         }
 
-        #drive-link-container.show {
-            display: block;
+        @media (max-width: 768px) {
+            .header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .header-center h1 {
+                font-size: 1.8em;
+            }
+
+            .save-download-section {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .route-steps {
+                flex-direction: column;
+            }
+
+            .header-info {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
         }
 
-        #drive-link-input {
+
+        /* TABLE STYLES - EXPANDED FULL WIDTH */
+        .glossary-table-wrapper {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        #url-link-container {
-            display: none;
-            margin-top: 20px;
-        }
-
-        #url-link-container.show {
-            display: block;
-        }
-
-        #url-link-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        #url-status {
-            margin-top: 10px;
-            font-size: 13px;
-            color: #666;
         }
 
         .glossary-table {
             width: 100%;
             border-collapse: collapse;
+            table-layout: fixed;
         }
 
         .glossary-table thead {
@@ -623,30 +920,95 @@
             padding: 18px 15px;
             text-align: left;
             font-weight: 600;
+            font-size: 1em;
+            border-bottom: 3px solid #5568d3;
+        }
+
+        /* Column widths for better distribution */
+        .glossary-table th:nth-child(1) {
+            width: 15%;
+        }
+
+        .glossary-table th:nth-child(2) {
+            width: 25%;
+        }
+
+        .glossary-table th:nth-child(3) {
+            width: 45%;
+        }
+
+        .glossary-table th:nth-child(4) {
+            width: 15%;
+            text-align: center;
         }
 
         .glossary-table td {
             padding: 18px 15px;
             border-bottom: 1px solid #e0e0e0;
+            vertical-align: middle;
+            font-size: 1.em;
+            color: #333;
+        }
+
+        .glossary-table td:nth-child(4) {
+            text-align: center;
+        }
+
+        /* ROW HOVER EFFECT - BLINKING HIGHLIGHT */
+        .glossary-table tbody tr {
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .glossary-table tbody tr:hover {
-            background: #f0f4ff;
+            background: linear-gradient(90deg, #fff3cd 0%, #ffe69c 100%);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            animation: rowBlink 0.6s ease-in-out 2;
+        }
+
+        @keyframes rowBlink {
+
+            0%,
+            100% {
+                background: linear-gradient(90deg, #fff3cd 0%, #ffe69c 100%);
+            }
+
+            50% {
+                background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
+            }
+        }
+
+        .glossary-table tbody tr:hover td {
+            color: #000;
+            font-weight: 500;
+        }
+
+
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .glossary-table {
+                font-size: 0.9em;
+            }
+
+            .glossary-table th,
+            .glossary-table td {
+                padding: 12px 10px;
+            }
         }
 
         @media (max-width: 768px) {
-            .header-center h1 {
-                font-size: 1.8em;
+            .glossary-table {
+                display: block;
+                overflow-x: auto;
             }
 
-            .header-info {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .save-download-section {
-                bottom: 10px;
-                right: 10px;
+            .glossary-table th:nth-child(1),
+            .glossary-table th:nth-child(2),
+            .glossary-table th:nth-child(3),
+            .glossary-table th:nth-child(4) {
+                width: auto;
             }
         }
     </style>
@@ -658,70 +1020,16 @@
         <button class="download-btn" onclick="downloadHTML()">⬇️ Download</button>
     </div>
 
-    <div class="notification" id="notification" style="background: rgb(16, 185, 129);">
-                <div style="font-weight: bold; margin-bottom: 5px;">✅ Images Saved!</div>
-                <div style="font-size: 13px;">0 images converted, 0 already saved</div>
-                <div style="font-size: 12px; margin-top: 5px;">Now press Ctrl+S to save the file permanently!</div>
-            </div>
-
-    <!-- Upload Modal -->
-    <div id="uploadModal" class="upload-modal">
-        <div class="modal-content">
-            <h3>📤 Upload Image</h3>
-            <p style="color: #666; margin-bottom: 20px;">Choose how you want to add an image:</p>
-
-            <button class="modal-btn primary" onclick="uploadFromDevice()">
-                💻 Upload from Device
-            </button>
-
-            <button class="modal-btn success" onclick="showDriveLinkInput()">
-                🔗 Google Drive Link
-            </button>
-
-            <button class="modal-btn" style="background: #f59e0b; color: white;" onclick="showUrlLinkInput()">
-                🌐 Image URL Link
-            </button>
-
-            <button class="modal-btn secondary" onclick="closeModal()">
-                ❌ Cancel
-            </button>
-
-            <div id="drive-link-container">
-                <p style="color: #666; font-size: 14px; margin-bottom: 10px;">
-                    <strong>📝 Instructions:</strong><br>
-                    1. Right-click on your Google Drive file<br>
-                    2. Select "Get link" → "Anyone with the link"<br>
-                    3. Copy and paste the link below
-                </p>
-                <input type="text" id="drive-link-input" placeholder="Paste Google Drive link here...">
-                <button class="modal-btn primary" onclick="loadFromDrive()">
-                    ✓ Load Image
-                </button>
-                <div id="drive-status"></div>
-            </div>
-
-            <div id="url-link-container" style="display: none;">
-                <p style="color: #666; font-size: 14px; margin-bottom: 10px;">
-                    <strong>📝 Instructions:</strong><br>
-                    1. Paste any direct image URL (from Google Sheets, Imgur, etc.)<br>
-                    2. URL should end with .jpg, .png, .gif, or be a direct image link<br>
-                    3. Example: https://i.imgur.com/example.png
-                </p>
-                <input type="text" id="url-link-input" placeholder="Paste image URL here... (e.g., https://example.com/image.png)">
-                <button class="modal-btn" style="background: #f59e0b; color: white;" onclick="loadFromUrl()">
-                    ✓ Load Image
-                </button>
-                <div id="url-status"></div>
-            </div>
-        </div>
-    </div>
+    <div class="notification" id="notification">Changes saved successfully! ✓</div>
 
     <div class="header">
         <div class="header-center">
             <h1>Master SOP Handbook</h1>
             <p>Standard Operating Procedures Dashboard</p>
         </div>
+
         <div class="header-info">
+
             <span>Team: L1 Connect hub support</span>
             <span>October 2025</span>
         </div>
@@ -729,57 +1037,56 @@
 
     <div class="container">
         <div class="main-buttons">
-            <div class="main-btn active" onclick="showSection(&#39;hub-portal&#39;)">
+            <div class="main-btn" onclick="showSection('hub-portal')">
                 <div class="icon">🏬</div>
                 <h2>Hub Portal</h2>
-                <p>Inbound &amp; Outbound Operations</p>
+                <p>Inbound & Outbound Operations</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;rider-app&#39;)">
+            <div class="main-btn" onclick="showSection('rider-app')">
                 <div class="icon">🛵</div>
                 <h2>Rider App</h2>
-                <p>Delivery &amp; Pickup Flows</p>
+                <p>Delivery & Pickup Flows</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;dashboard&#39;)">
+            <div class="main-btn" onclick="showSection('dashboard')">
                 <div class="icon">📊</div>
                 <h2>Dashboard</h2>
-                <p>Live Tracking &amp; Reports</p>
+                <p>Live Tracking & Reports</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;exception&#39;)">
+            <div class="main-btn" onclick="showSection('exception')">
                 <div class="icon">📝</div>
                 <h2>Exception Portal</h2>
-                <p>Shipment Tally &amp; Exceptions</p>
+                <p>Shipment Tally & Exceptions</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;valinor&#39;)">
+            <div class="main-btn" onclick="showSection('valinor')">
                 <div class="icon">🖥</div>
                 <h2>Valinor</h2>
                 <p>Login Portal</p>
             </div>
-            <div class="main-btn" onclick="showSection(&#39;glossary&#39;)">
+            <div class="main-btn" onclick="showSection('glossary')">
                 <div class="icon">🔖</div>
                 <h2>Glossary</h2>
-                <p>Terms &amp; Definitions</p>
+                <p>Terms & Definitions</p>
             </div>
         </div>
-
         <!-- HUB PORTAL SECTION -->
-        <div id="hub-portal" class="content-area active">
+        <div id="hub-portal" class="content-area">
             <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
             <h2 style="color: #667eea; margin-bottom: 20px;">🏬 Hub Portal Activities</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn active" onclick="showSubsection(&#39;hub&#39;, &#39;inbound&#39;, this)">📥 Inbound
+                <button class="subsection-btn" onclick="showSubsection('hub', 'inbound', this)">📥 Inbound
                     Process</button>
             </div>
 
-            <div id="hub-inbound" class="sop-content active">
+            <div id="hub-inbound" class="sop-content">
                 <h3 style="color: #764ba2; margin-bottom: 25px;">📥 Inbound Process</h3>
 
                 <div class="detail-nav">
-                    <button class="detail-btn active" onclick="showDetail(&#39;inbound&#39;, &#39;master-manifest&#39;, this)">1️⃣ Master
+                    <button class="detail-btn" onclick="showDetail('inbound', 'master-manifest', this)">1️⃣ Master
                         Manifest Receive</button>
                 </div>
 
-                <div id="inbound-master-manifest" class="sop-detail" style="display: block;">
+                <div id="inbound-master-manifest" class="sop-detail">
                     <div class="sop-step">
                         <h3><span class="step-number">1.1 </span>Receiving Manifest from Master Manifest</h3>
                         <div class="step-description">
@@ -787,295 +1094,270 @@
                                 (MM). The Hub Incharge must verify and accept incoming shipments.</b>
                         </div>
 
-                        <div class="step-image-container" onclick="uploadImage(this)" id="first-step-image">
-                            <img src="./new_files/1.1.png" alt="MM Reaching Hub Button" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1f0harbLwM28uLgLYnWBMViGf27b33NZm&#39;; this.onerror=function(){this.style.display=&#39;none&#39;; this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;};">
-                        </div>
-                        <p><strong>Step 1:</strong> Navigate to Hub Portal and click on "MM Reaching Hub".</p>
+                        <div class="step-image-container">
 
-                        <div class="route-map">
-                            <h4>🗺️ Process Flow:</h4>
-                            <div class="route-steps">
-                                <div class="route-step">MM Reaching Hub</div>
-                                <div class="route-arrow">→</div>
-                                <div class="route-step">Receive on Trip</div>
-                                <div class="route-arrow">→</div>
-                                <div class="route-step">Scan Seal &amp; Manifests</div>
-                                <div class="route-arrow">→</div>
-                                <div class="route-step">Submit &amp; Get POD</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- RIDER APP SECTION -->
-        <div id="rider-app" class="content-area">
-            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">🛵 Rider App Operations</h2>
-
-            <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;rider&#39;, &#39;login&#39;, this)">🔐 Login
-                    Process</button>
-            </div>
-
-            <div id="rider-login" class="sop-content">
-                <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Rider Login Process</h3>
-
-                <div class="sop-step">
-                    <h3><span class="step-number">3.3 </span>App Login &amp; Daily Check-in</h3>
-                    <div class="step-description">
-                        <b>Step-by-step guide for riders to log in, verify their number, and start their daily delivery
-                            operations.</b>
-                    </div>
-
-                    <div class="step-image-container" onclick="uploadImage(this)">
-                        <p style="color: #667eea;">📸 Click here to upload image</p>
-                    </div>
-                    <p><strong>Step 1:</strong> Allow the app to access your <strong>Call Logs</strong> when prompted.
-                    </p>
-
-                    <div class="route-map">
-                        <h4>🗺️ Login Flow:</h4>
-                        <div class="route-steps">
-                            <div class="route-step">Open App &amp; Choose Language</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Allow Call Logs</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Auto Verify via Call</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Allow Notifications</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Resume Delivering</div>
-                        </div>
-                    </div>
-
-                    <div class="important-note">
-                        <h4>🚴‍♂️ Rider Login Process</h4>
-                        <p><strong>Note:</strong> If the Rider does not receive the OTP from the <strong>Shadowfax
-                                Partner</strong> platform, kindly ask the Rider to <strong>uninstall the Truecaller
-                                app</strong> and <strong>unblock the spam number</strong> from the phone settings.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DASHBOARD SECTION -->
-        <div id="dashboard" class="content-area">
-            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">📊 Dashboard &amp; Reports</h2>
-
-            <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;dash&#39;, &#39;live-tracking&#39;, this)">🔴 Live
-                    Dashboard</button>
-            </div>
-
-            <div id="dash-live-tracking" class="sop-content">
-                <h3 style="color: #764ba2; margin-bottom: 25px;">🔴 Live Dashboard</h3>
-
-                <div class="sop-step">
-                    <h3>Real-time Hub &amp; Shipment Monitoring</h3>
-                    <p><strong>Live:</strong> Data is updated immediately or continuously, showing the current status.
-                    </p>
-
-                    <div class="step-image-container" onclick="uploadImage(this)" id="first-step-image">
-                        <img src="./new_files/1.2.png" alt="SOP Image" onerror="this.src=&#39;https://drive.google.com/uc?export=view&amp;id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV&#39;; 
+                            <img src="https://drive.google.com/thumbnail?id=1_6bEx-MTnzN59GGJU4GYO29wzS4B3GYg&sz=w2000"
+                                alt="Image 1" onerror="this.src='https://drive.google.com/uc?export=view&id=1_6bEx-MTnzN59GGJU4GYO29wzS4B3GYg';
                  this.onerror=function(){
-                    this.style.display=&#39;none&#39;; 
-                    this.parentElement.innerHTML=&#39;&lt;p style=color:#667eea;&gt;📸 Click here to upload image&lt;/p&gt;&#39;;
+                    this.style.display='none';
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
                  };">
+
+                        </div>
                     </div>
-                    <p><strong>Step 1:</strong> <strong>GEM – Delivery Champion</strong><br>
-                        Tracks overall hub performance, rider ranking, and delivery efficiency.</p>
+                    <p><strong>Step 1:</strong> Navigate to Hub Portal and click on "MM Reaching Hub".</p>
 
                     <div class="route-map">
                         <h4>🗺️ Process Flow:</h4>
                         <div class="route-steps">
-                            <div class="route-step">Login</div>
+                            <div class="route-step">MM Reaching Hub</div>
                             <div class="route-arrow">→</div>
-                            <div class="route-step">Select Region/Hub</div>
+                            <div class="route-step">Receive on Trip</div>
                             <div class="route-arrow">→</div>
-                            <div class="route-step">Monitor Live Shipments</div>
+                            <div class="route-step">Scan Seal & Manifests</div>
+                            <div class="route-arrow">→</div>
+                            <div class="route-step">Submit & Get POD</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- EXCEPTION PORTAL SECTION -->
-        <div id="exception" class="content-area">
-            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">📝 Exception Portal</h2>
-
-            <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;exc&#39;, &#39;tally&#39;, this)">📊 Shipment Tally</button>
-            </div>
-
-            <div id="exc-tally" class="sop-content">
-                <h3 style="color: #764ba2; margin-bottom: 25px;">📊 Shipment Tally</h3>
-                <div class="sop-step">
-                    <h3>Daily Shipment Reconciliation</h3>
-                    <p><strong>Shipment Tally:</strong> The process of counting and verifying incoming shipments against
-                        the manifest.</p>
-
-                    <div class="step-image-container" onclick="uploadImage(this)">
-                        <p style="color: #667eea;">📸 Click here to upload image</p>
-                    </div>
-                    <p><strong>Step 1:</strong> Click on <strong>Shipment Tally</strong>.</p>
-
-                    <div class="route-map">
-                        <h4>🗺️ Process Flow:</h4>
-                        <div class="route-steps">
-                            <div class="route-step">Shipments Arrive at Hub</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Check Against AWB</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Verify Accuracy &amp; Confirm</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VALINOR SECTION -->
-        <div id="valinor" class="content-area">
-            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">🖥 Valinor Login Portal</h2>
-
-            <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;val&#39;, &#39;access&#39;, this)">🔐 Access &amp;
-                    Login</button>
-            </div>
-
-            <div id="val-access" class="sop-content">
-                <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Access &amp; Login</h3>
-                <div class="sop-step">
-                    <h3>Valinor Portal Access</h3>
-                    <p><strong>Valinor Portal:</strong> Steps to securely log in to the Valinor portal.</p>
-
-                    <div class="step-image-container" onclick="uploadImage(this)">
-                        <p style="color: #667eea;">📸 Click here to upload image</p>
-                    </div>
-                    <p><strong>Step 1:</strong> Enter your <strong>contact number</strong> and click on <strong>Send
-                            OTP</strong>.</p>
-
-                    <div class="route-map">
-                        <h4>🗺️ Process Flow:</h4>
-                        <div class="route-steps">
-                            <div class="route-step">Send OTP</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Enter OTP</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Submit</div>
-                            <div class="route-arrow">→</div>
-                            <div class="route-step">Access Portals</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GLOSSARY SECTION -->
-        <div id="glossary" class="content-area">
-            <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
-            <h2 style="color: #667eea; margin-bottom: 20px;">🔖 Glossary &amp; Definitions</h2>
-
-            <button class="subsection-btn" style="margin-bottom: 20px; background: #667eea; color: white;">
-                📖 Key Terms
-            </button>
-
-            <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <table class="glossary-table">
-                    <thead>
-                        <tr>
-                            <th>Term / Acronyms</th>
-                            <th>Full Form / Meaning</th>
-                            <th>Description</th>
-                            <th style="text-align: center;">Link to SOP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="font-weight: 600;">AWB</td>
-                            <td>Air Waybill</td>
-                            <td>Unique tracking number assigned to each shipment for identification and tracking
-                                purposes.</td>
-                            <td style="text-align: center;">
-                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
-                                    👉 Go to SOP
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 600;">MM</td>
-                            <td>Master Manifest</td>
-                            <td>A document that consolidates multiple shipments into one transport unit.</td>
-                            <td style="text-align: center;">
-                                <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;" onclick="navigateToSOP(&#39;hub-portal&#39;,&#39;inbound&#39;,&#39;master-manifest&#39;)">
-                                    👉 Go to SOP
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Instructions for sharing with team -->
-            <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 100%); border-radius: 15px; border: 2px solid #667eea;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">📤 How to Share This SOP with Your Team</h3>
-
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-                    <h4 style="color: #4ba254; margin-bottom: 10px;">✅ Step 1: Upload All Images</h4>
-                    <p>Click on each image area and upload images using one of these methods:</p>
-                    <ul style="margin: 10px 0 0 20px; color: #555;">
-                        <li><strong>💻 Upload from Device</strong> - Best for permanent embedding</li>
-                        <li><strong>🔗 Google Drive Link</strong> - Quick but may have limitations</li>
-                        <li><strong>🌐 Image URL Link</strong> - Use Imgur or other image hosting</li>
-                    </ul>
-                </div>
-
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-                    <h4 style="color: #4ba254; margin-bottom: 10px;">✅ Step 2: Save the Document</h4>
-                    <p style="margin-bottom: 10px;">After uploading all images:</p>
-                    <ol style="margin: 10px 0 0 20px; color: #555;">
-                        <li>Click the <strong>"💾 Save All"</strong> button (bottom right)</li>
-                        <li>Press <strong>Ctrl+S</strong> (Windows) or <strong>Cmd+S</strong> (Mac)</li>
-                        <li>Save the file (e.g., "Master_SOP_Handbook.html")</li>
-                    </ol>
-                </div>
-
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-                    <h4 style="color: #4ba254; margin-bottom: 10px;">✅ Step 3: Share via Google Sheets</h4>
-                    <p style="margin-bottom: 10px;">Upload the HTML file to Google Drive and create a shareable link:
-                    </p>
-                    <ol style="margin: 10px 0 0 20px; color: #555;">
-                        <li>Upload the saved HTML file to <strong>Google Drive</strong></li>
-                        <li>Right-click → <strong>"Get link"</strong></li>
-                        <li>Set to <strong>"Anyone with the link can view"</strong></li>
-                        <li>Copy the link (e.g., https://drive.google.com/file/d/...)</li>
-                        <li>Paste this link in your <strong>Google Sheet</strong></li>
-                        <li>Team members can click the link to download and open the file</li>
-                    </ol>
-                </div>
-
-                <div style="background: #fff4e5; padding: 20px; border-radius: 10px; border-left: 5px solid #f59e0b;">
-                    <h4 style="color: #cc6600; margin-bottom: 10px;">💡 Pro Tips:</h4>
-                    <ul style="margin: 10px 0 0 20px; color: #555;">
-                        <li>All images will be embedded in the HTML file</li>
-                        <li>Team members can open it in any browser without internet (after downloading)</li>
-                        <li>The file is read-only, so the original won't be changed</li>
-                        <li>Update the file and re-share whenever you make changes</li>
-                        <li>Use the <strong>"⬇️ Download"</strong> button to create a clean version for sharing</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- RIDER APP SECTION -->
+    <div id="rider-app" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🛵 Rider App Operations</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection('rider', 'login', this)">🔐 Login
+                Process</button>
+        </div>
+
+        <div id="rider-login" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Rider Login Process</h3>
+
+            <div class="sop-step">
+                <h3><span class="step-number">3.3 </span>App Login & Daily Check-in</h3>
+                <div class="step-image-container">
+                    <img src="https://drive.google.com/thumbnail?id=1f0harbLwM28uLgLYnWBMViGf27b33NZm&sz=w2000"
+                        alt="MM Reaching Hub Button"
+                        onerror="this.src='https://drive.google.com/uc?export=view&id=1f0harbLwM28uLgLYnWBMViGf27b33NZm'; this.onerror=function(){this.style.display='none'; this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';};">
+                </div>
+                <div class="step-image-container" onclick="uploadImage(this)">
+                    <p style="color: #667eea;">📸 Click here to upload image</p>
+                </div>
+                <p><strong>Step 1:</strong> Allow the app to access your <strong>Call Logs</strong> when prompted.
+                </p>
+
+                <div class="route-map">
+                    <h4>🗺️ Login Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Open App & Choose Language</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Allow Call Logs</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Auto Verify via Call</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Allow Notifications</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Resume Delivering</div>
+                    </div>
+                </div>
+
+                <div class="important-note">
+                    <h4>🚴‍♂️ Rider Login Process</h4>
+                    <p><strong>Note:</strong> If the Rider does not receive the OTP from the <strong>Shadowfax
+                            Partner</strong> platform, kindly ask the Rider to <strong>uninstall the Truecaller
+                            app</strong> and <strong>unblock the spam number</strong> from the phone settings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">📊 Dashboard & Reports</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection('dash', 'live-tracking', this)">🔴 Live
+                Dashboard</button>
+        </div>
+
+        <div id="dash-live-tracking" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔴 Live Dashboard</h3>
+
+            <div class="sop-step">
+                <h3>Real-time Hub & Shipment Monitoring</h3>
+                <p><strong>Live:</strong> Data is updated immediately or continuously, showing the current status.
+                </p>
+
+                <div class="step-image-container">
+                    <img src="https://drive.google.com/thumbnail?id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV&sz=w2000"
+                        alt="SOP Image" onerror="this.src='https://drive.google.com/uc?export=view&id=1xTsGidto9axkajUzLS-P9VmhAk02tHEV'; 
+                 this.onerror=function(){
+                    this.style.display='none'; 
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> <strong>GEM – Delivery Champion</strong><br>
+                    Tracks overall hub performance, rider ranking, and delivery efficiency.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Login</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Select Region/Hub</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Monitor Live Shipments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXCEPTION PORTAL SECTION -->
+    <div id="exception" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">📝 Exception Portal</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection('exc', 'tally', this)">📊 Shipment Tally</button>
+        </div>
+
+        <div id="exc-tally" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">📊 Shipment Tally</h3>
+            <div class="sop-step">
+                <h3>Daily Shipment Reconciliation</h3>
+                <p><strong>Shipment Tally:</strong> The process of counting and verifying incoming shipments against
+                    the manifest.</p>
+
+
+                <div class="step-image-container">
+                    <img src="https://drive.google.com/thumbnail?id=1pZ5COGaJQ8GObQDElj3TpTJp6CQ_icGZ&sz=w2000"
+                        alt="Image 7" onerror="this.src='https://drive.google.com/uc?export=view&id=1pZ5COGaJQ8GObQDElj3TpTJp6CQ_icGZ';
+                 this.onerror=function(){
+                    this.style.display='none';
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> Click on <strong>Shipment Tally</strong>.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Shipments Arrive at Hub</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Check Against AWB</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Verify Accuracy & Confirm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VALINOR SECTION -->
+    <div id="valinor" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🖥 Valinor Login Portal</h2>
+
+        <div class="subsection-nav">
+            <button class="subsection-btn" onclick="showSubsection('val', 'access', this)">🔐 Access &
+                Login</button>
+        </div>
+
+        <div id="val-access" class="sop-content">
+            <h3 style="color: #764ba2; margin-bottom: 25px;">🔐 Access & Login</h3>
+            <div class="sop-step">
+                <h3>Valinor Portal Access</h3>
+                <p><strong>Valinor Portal:</strong> Steps to securely log in to the Valinor portal.</p>
+
+
+                <div class="step-image-container">
+                    <img src="https://drive.google.com/thumbnail?id=1V8kz2UEm9TzCtPJrlm7hudRTTIvPyrVq&sz=w2000"
+                        alt="Image 1" onerror="this.src='https://drive.google.com/uc?export=view&id=1V8kz2UEm9TzCtPJrlm7hudRTTIvPyrVq';
+                 this.onerror=function(){
+                    this.style.display='none';
+                    this.parentElement.innerHTML='<p style=color:#667eea;>📸 Click here to upload image</p>';
+                 };">
+                </div>
+                <p><strong>Step 1:</strong> Enter your <strong>contact number</strong> and click on <strong>Send
+                        OTP</strong>.</p>
+
+                <div class="route-map">
+                    <h4>🗺️ Process Flow:</h4>
+                    <div class="route-steps">
+                        <div class="route-step">Send OTP</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Enter OTP</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Submit</div>
+                        <div class="route-arrow">→</div>
+                        <div class="route-step">Access Portals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOSSARY SECTION -->
+    <div id="glossary" class="content-area">
+        <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
+        <h2 style="color: #667eea; margin-bottom: 20px;">🔖 Glossary & Definitions</h2>
+
+        <button class="subsection-btn" style="margin-bottom: 20px; background: #667eea; color: white;">
+            📖 Key Terms
+        </button>
+
+        <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <table class="glossary-table">
+                <thead>
+                    <tr>
+                        <th>Term / Acronyms</th>
+                        <th>Full Form / Meaning</th>
+                        <th>Description</th>
+                        <th style="text-align: center;">Link to SOP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 600;">AWB</td>
+                        <td>Air Waybill</td>
+                        <td>Unique tracking number assigned to each shipment for identification and tracking
+                            purposes.</td>
+                        <td style="text-align: center;">
+                            <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;"
+                                onclick="navigateToSOP('hub-portal','inbound','master-manifest')">
+                                👉 Go to SOP
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">MM</td>
+                        <td>Master Manifest</td>
+                        <td>A document that consolidates multiple shipments into one transport unit.</td>
+                        <td style="text-align: center;">
+                            <button class="detail-btn" style="padding: 8px 16px; font-size: 0.9em;"
+                                onclick="navigateToSOP('hub-portal','inbound','master-manifest')">
+                                👉 Go to SOP
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+
     <script>
         // Image Storage Object - stores images as base64
         const imageStorage = {};
-        let currentUploadContainer = null;
 
         // Check if document has been saved
         function isDocumentSaved() {
@@ -1092,7 +1374,31 @@
             return allSaved;
         }
 
-        // Disable right-click, view source, and inspect for saved documents
+        // Handle Ctrl+S / Cmd+S to save and download
+        function setupSaveHandler() {
+            document.addEventListener('keydown', async function (e) {
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
+                    e.preventDefault();
+
+                    if (isDocumentSaved()) {
+                        const notification = document.getElementById('notification');
+                        notification.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 5px;">ℹ️ Already Saved</div>
+                    <div style="font-size: 13px;">This document is already in read-only mode</div>
+                `;
+                        notification.style.background = '#6b7280';
+                        notification.classList.add('show');
+                        setTimeout(() => notification.classList.remove('show'), 2000);
+                        return false;
+                    }
+
+                    await saveAllChanges();
+                    return false;
+                }
+            });
+        }
+
+        // Disable right-click and dev tools for saved documents
         function applySavedDocumentProtection() {
             document.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
@@ -1100,357 +1406,175 @@
             });
 
             document.addEventListener('keydown', function (e) {
+                // F12, Ctrl+Shift+I/J, Ctrl+U, etc.
                 if (e.keyCode === 123 ||
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
-                    (e.ctrlKey && e.shiftKey && e.keyCode === 74) ||
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
                     (e.ctrlKey && e.keyCode === 85) ||
-                    (e.ctrlKey && e.keyCode === 83) ||
-                    (e.metaKey && e.altKey && e.keyCode === 73) ||
-                    (e.metaKey && e.altKey && e.keyCode === 74) ||
-                    (e.metaKey && e.keyCode === 85) ||
-                    (e.metaKey && e.keyCode === 83)) {
+                    (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+                    (e.metaKey && e.keyCode === 85)) {
                     e.preventDefault();
                     return false;
                 }
             });
         }
 
-        // Upload Image - Show Modal
-        function uploadImage(container) {
-            currentUploadContainer = container;
-            const modal = document.getElementById('uploadModal');
-            modal.classList.add('show');
+        // Convert Google Drive URL to direct download URL
+        function convertGoogleDriveURL(url) {
+            let fileId = null;
 
-            // Reset modal state
-            document.getElementById('drive-link-container').classList.remove('show');
-            document.getElementById('url-link-container').classList.remove('show');
-            document.getElementById('drive-link-input').value = '';
-            document.getElementById('url-link-input').value = '';
-            document.getElementById('drive-status').innerHTML = '';
-            document.getElementById('url-status').innerHTML = '';
-        }
+            if (url.includes('drive.google.com')) {
+                // Various Google Drive URL formats
+                const patterns = [
+                    /\/file\/d\/([^\/]+)/,
+                    /[?&]id=([^&]+)/,
+                    /\/d\/([^\/]+)/
+                ];
 
-        // Close Modal
-        function closeModal() {
-            const modal = document.getElementById('uploadModal');
-            modal.classList.remove('show');
-            currentUploadContainer = null;
-
-            // Reset all inputs
-            document.getElementById('drive-link-container').classList.remove('show');
-            document.getElementById('url-link-container').classList.remove('show');
-            document.getElementById('drive-link-input').value = '';
-            document.getElementById('url-link-input').value = '';
-            document.getElementById('drive-status').innerHTML = '';
-            document.getElementById('url-status').innerHTML = '';
-        }
-
-        // Upload from Device
-        function uploadFromDevice() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-
-            input.onchange = function (e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const imageId = 'img_' + Date.now();
-                        const imageData = event.target.result;
-                        imageStorage[imageId] = imageData;
-
-                        currentUploadContainer.innerHTML = `
-                            <img src="${imageData}" alt="SOP Image" data-image-id="${imageId}">
-                        `;
-                        currentUploadContainer.classList.add('has-image');
-
-                        const img = currentUploadContainer.querySelector('img');
-                        img.onclick = function (e) {
-                            e.stopPropagation();
-                            if (confirm('Do you want to replace this image?')) {
-                                uploadImage(currentUploadContainer);
-                            }
-                        };
-
-                        closeModal();
-                        showNotification('✅ Image uploaded successfully!');
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
-            input.click();
-        }
-
-        // Show Drive Link Input
-        function showDriveLinkInput() {
-            document.getElementById('drive-link-container').classList.add('show');
-            document.getElementById('url-link-container').classList.remove('show');
-        }
-
-        // Show URL Link Input
-        function showUrlLinkInput() {
-            document.getElementById('url-link-container').classList.add('show');
-            document.getElementById('drive-link-container').classList.remove('show');
-        }
-
-        // Load from URL
-        function loadFromUrl() {
-            const input = document.getElementById('url-link-input');
-            const status = document.getElementById('url-status');
-            const imageUrl = input.value.trim();
-
-            if (!imageUrl) {
-                status.innerHTML = '⚠️ Please paste an image URL';
-                status.style.color = '#f59e0b';
-                return;
-            }
-
-            // Check if URL looks like an image
-            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.svg'];
-            const hasImageExtension = imageExtensions.some(ext => imageUrl.toLowerCase().includes(ext));
-
-            if (!hasImageExtension && !imageUrl.includes('imgur') && !imageUrl.includes('image')) {
-                status.innerHTML = '⚠️ URL doesn\'t appear to be an image. Please check the link.';
-                status.style.color = '#f59e0b';
-            }
-
-            status.innerHTML = '⏳ Loading image from URL...';
-            status.style.color = '#667eea';
-
-            const img = new Image();
-
-            img.onload = function () {
-                try {
-                    // Try to convert to base64 for permanent embedding
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.naturalWidth || img.width;
-                    canvas.height = img.naturalHeight || img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-
-                    const imageData = canvas.toDataURL('image/png');
-                    const imageId = 'img_' + Date.now();
-                    imageStorage[imageId] = imageData;
-
-                    currentUploadContainer.innerHTML = `
-                        <img src="${imageData}" alt="SOP Image" data-image-id="${imageId}" data-original-url="${imageUrl}">
-                    `;
-                    currentUploadContainer.classList.add('has-image');
-
-                    const newImg = currentUploadContainer.querySelector('img');
-                    newImg.onclick = function (e) {
-                        e.stopPropagation();
-                        if (confirm('Do you want to replace this image?')) {
-                            uploadImage(currentUploadContainer);
-                        }
-                    };
-
-                    status.innerHTML = '✅ Image loaded and embedded successfully!';
-                    status.style.color = '#10b981';
-
-                    setTimeout(() => {
-                        closeModal();
-                        showNotification('✅ Image from URL loaded successfully!');
-                    }, 1000);
-                } catch (canvasError) {
-                    // If canvas conversion fails (CORS), use direct link
-                    const imageId = 'img_' + Date.now();
-                    imageStorage[imageId] = imageUrl;
-
-                    currentUploadContainer.innerHTML = `
-                        <img src="${imageUrl}" alt="SOP Image" data-image-id="${imageId}" data-original-url="${imageUrl}">
-                    `;
-                    currentUploadContainer.classList.add('has-image');
-
-                    const newImg = currentUploadContainer.querySelector('img');
-                    newImg.onclick = function (e) {
-                        e.stopPropagation();
-                        if (confirm('Do you want to replace this image?')) {
-                            uploadImage(currentUploadContainer);
-                        }
-                    };
-
-                    status.innerHTML = '✅ Image linked successfully! (Note: Image is linked, not embedded)';
-                    status.style.color = '#10b981';
-
-                    setTimeout(() => {
-                        closeModal();
-                        showNotification('✅ Image linked successfully!');
-                    }, 1500);
-                }
-            };
-
-            img.onerror = function () {
-                status.innerHTML = `
-                    ❌ Could not load image from URL.<br><br>
-                    <strong>Common issues:</strong><br>
-                    • URL is not a direct image link<br>
-                    • URL requires authentication<br>
-                    • Image doesn't exist or has been removed<br>
-                    • CORS restrictions prevent loading<br><br>
-                    <strong>Try:</strong><br>
-                    1. Upload the image to Imgur and use that link<br>
-                    2. Use "Upload from Device" instead
-                `;
-                status.style.color = '#ef4444';
-            };
-
-            img.crossOrigin = 'anonymous';
-            img.src = imageUrl;
-        }
-
-        // Load from Google Drive
-        async function loadFromDrive() {
-            const input = document.getElementById('drive-link-input');
-            const status = document.getElementById('drive-status');
-            const driveLink = input.value.trim();
-
-            if (!driveLink) {
-                status.innerHTML = '⚠️ Please paste a Google Drive link';
-                status.style.color = '#f59e0b';
-                return;
-            }
-
-            status.innerHTML = '⏳ Loading image from Google Drive...';
-            status.style.color = '#667eea';
-
-            try {
-                // Extract file ID from various Google Drive URL formats
-                let fileId = null;
-
-                if (driveLink.includes('/file/d/')) {
-                    fileId = driveLink.match(/\/file\/d\/([^\/\?]+)/)?.[1];
-                } else if (driveLink.includes('id=')) {
-                    fileId = driveLink.match(/id=([^&]+)/)?.[1];
-                } else if (driveLink.includes('drive.google.com')) {
-                    // Try to extract from any Google Drive URL
-                    const matches = driveLink.match(/[-\w]{25,}/);
-                    if (matches) fileId = matches[0];
-                }
-
-                if (!fileId) {
-                    throw new Error('Invalid Google Drive link format. Please use a valid share link.');
-                }
-
-                // Use Google Drive thumbnail API which works better with CORS
-                // sz=w2000 gives us high quality image (2000px width)
-                const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
-
-                // Also try the direct view link as fallback
-                const directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
-
-                // Create image element to load
-                const img = new Image();
-
-                img.onload = function () {
-                    // Convert to base64
-                    try {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.naturalWidth || img.width;
-                        canvas.height = img.naturalHeight || img.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-
-                        const imageData = canvas.toDataURL('image/png');
-                        const imageId = 'img_' + Date.now();
-                        imageStorage[imageId] = imageData;
-
-                        currentUploadContainer.innerHTML = `
-                            <img src="${imageData}" alt="SOP Image" data-image-id="${imageId}">
-                        `;
-                        currentUploadContainer.classList.add('has-image');
-
-                        const newImg = currentUploadContainer.querySelector('img');
-                        newImg.onclick = function (e) {
-                            e.stopPropagation();
-                            if (confirm('Do you want to replace this image?')) {
-                                uploadImage(currentUploadContainer);
-                            }
-                        };
-
-                        status.innerHTML = '✅ Image loaded successfully!';
-                        status.style.color = '#10b981';
-
-                        setTimeout(() => {
-                            closeModal();
-                            showNotification('✅ Image from Google Drive loaded successfully!');
-                        }, 1000);
-                    } catch (canvasError) {
-                        // If canvas fails due to CORS, just use the image directly
-                        const imageId = 'img_' + Date.now();
-                        imageStorage[imageId] = img.src;
-
-                        currentUploadContainer.innerHTML = `
-                            <img src="${img.src}" alt="SOP Image" data-image-id="${imageId}">
-                        `;
-                        currentUploadContainer.classList.add('has-image');
-
-                        const newImg = currentUploadContainer.querySelector('img');
-                        newImg.onclick = function (e) {
-                            e.stopPropagation();
-                            if (confirm('Do you want to replace this image?')) {
-                                uploadImage(currentUploadContainer);
-                            }
-                        };
-
-                        status.innerHTML = '✅ Image loaded! (Note: Image is linked, not embedded. Use "Upload from Device" for full embedding)';
-                        status.style.color = '#10b981';
-
-                        setTimeout(() => {
-                            closeModal();
-                            showNotification('✅ Image linked successfully!');
-                        }, 1500);
+                for (const pattern of patterns) {
+                    const match = url.match(pattern);
+                    if (match) {
+                        fileId = match[1];
+                        break;
                     }
-                };
+                }
+            }
 
-                img.onerror = function () {
-                    // Try alternative URL
-                    const altImg = new Image();
-                    altImg.onload = function () {
-                        img.src = altImg.src;
-                        img.onload();
-                    };
-                    altImg.onerror = function () {
-                        status.innerHTML = `
-                            ❌ Could not load image.<br><br>
-                            <strong>Please ensure:</strong><br>
-                            1. File sharing is set to "Anyone with the link"<br>
-                            2. You copied the share link (Right-click → Get link)<br>
-                            3. The file is an image (JPG, PNG, etc.)<br><br>
-                            <strong>Alternative:</strong> Download the image and use "Upload from Device" instead.
-                        `;
-                        status.style.color = '#ef4444';
-                    };
-                    altImg.src = directUrl;
-                };
+            if (fileId) {
+                return `https://drive.google.com/uc?export=download&id=${fileId}`;
+            }
 
-                // Try thumbnail first
-                img.src = thumbnailUrl;
+            return url;
+        }
 
+        // Fetch image with CORS handling
+        async function fetchImageWithProxy(url) {
+            // Try direct fetch first
+            try {
+                const response = await fetch(url, {
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                if (response.ok) {
+                    return await response.blob();
+                }
             } catch (error) {
-                status.innerHTML = '❌ Error: ' + error.message;
-                status.style.color = '#ef4444';
+                console.log('Direct fetch failed, trying proxy...');
+            }
+
+            // Try CORS proxy
+            try {
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyUrl);
+                if (response.ok) {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.warn('Proxy fetch failed:', error);
+            }
+
+            // Try another proxy as fallback
+            try {
+                const corsProxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                const response = await fetch(corsProxy);
+                if (response.ok) {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.warn('All fetch methods failed:', error);
+            }
+
+            throw new Error('Failed to fetch image from all sources');
+        }
+
+        // Convert image URL to base64
+        async function convertImageToBase64(url) {
+            try {
+                const directUrl = convertGoogleDriveURL(url);
+                const blob = await fetchImageWithProxy(directUrl);
+
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            } catch (error) {
+                console.error('Failed to convert image:', url, error);
+                throw error;
             }
         }
 
-        // Show Notification
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+        // Convert all images on page load
+        async function convertExistingImages() {
+            const images = document.querySelectorAll('img[src^="http"], img[src*="drive.google.com"]');
+
+            console.log(`Found ${images.length} external images to convert`);
+            let converted = 0;
+            let failed = 0;
+
+            for (const img of images) {
+                try {
+                    const originalSrc = img.src;
+
+                    if (originalSrc.startsWith('data:')) {
+                        console.log('Already base64, skipping');
+                        continue;
+                    }
+
+                    const directUrl = convertGoogleDriveURL(originalSrc);
+                    console.log(`Converting: ${directUrl}`);
+
+                    const blob = await fetchImageWithProxy(directUrl);
+
+                    const base64 = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+
+                    const imageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    imageStorage[imageId] = base64;
+
+                    img.setAttribute('data-image-id', imageId);
+                    img.setAttribute('data-original-src', originalSrc);
+                    img.src = base64;
+
+                    converted++;
+                    console.log(`✓ Converted ${converted}/${images.length}`);
+
+                    // Small delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                } catch (error) {
+                    console.warn('Failed to convert image:', img.src, error);
+                    failed++;
+                }
+            }
+
+            console.log(`Conversion complete! ${converted} succeeded, ${failed} failed`);
+
+            // Show notification if any conversions happened
+            if (converted > 0 || failed > 0) {
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    notification.innerHTML = `
+                <div style="font-weight: bold; margin-bottom: 5px;">🎉 Images Loaded</div>
+                <div style="font-size: 13px;">${converted} images embedded successfully${failed > 0 ? `, ${failed} failed` : ''}</div>
+            `;
+                    notification.style.background = failed > 0 ? '#f59e0b' : '#10b981';
+                    notification.classList.add('show');
+                    setTimeout(() => notification.classList.remove('show'), 3000);
+                }
+            }
         }
 
-        // Save All Changes
+        // Main save and download function
         async function saveAllChanges() {
             const notification = document.getElementById('notification');
             notification.innerHTML = `
-                <div style="font-weight: bold; margin-bottom: 5px;">💾 Saving Images...</div>
-                <div style="font-size: 13px;">Converting images to embedded format...</div>
-            `;
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 1/3: Embedding Images...</div>
+        <div style="font-size: 13px;">Converting all images to base64 format...</div>
+    `;
             notification.style.background = '#3b82f6';
             notification.classList.add('show');
 
@@ -1459,7 +1583,9 @@
             const allImages = document.querySelectorAll('img');
             let savedCount = 0;
             let alreadySavedCount = 0;
+            let failedCount = 0;
 
+            // Embed all images
             for (const img of allImages) {
                 if (img.src.startsWith('data:')) {
                     alreadySavedCount++;
@@ -1474,12 +1600,13 @@
                 }
 
                 try {
-                    const response = await fetch(img.src);
-                    const blob = await response.blob();
+                    const directUrl = convertGoogleDriveURL(img.src);
+                    const blob = await fetchImageWithProxy(directUrl);
 
-                    const base64 = await new Promise((resolve) => {
+                    const base64 = await new Promise((resolve, reject) => {
                         const reader = new FileReader();
                         reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
                         reader.readAsDataURL(blob);
                     });
 
@@ -1488,131 +1615,384 @@
                     img.setAttribute('data-image-id', newImageId);
                     img.src = base64;
                     savedCount++;
+
+                    await new Promise(resolve => setTimeout(resolve, 100));
                 } catch (error) {
                     console.warn('Could not save image:', img.src, error);
+                    failedCount++;
                 }
             }
 
             notification.innerHTML = `
-                <div style="font-weight: bold; margin-bottom: 5px;">✅ Images Saved!</div>
-                <div style="font-size: 13px;">${savedCount} images converted, ${alreadySavedCount} already saved</div>
-                <div style="font-size: 12px; margin-top: 5px;">Now press Ctrl+S to save the file permanently!</div>
-            `;
-            notification.style.background = '#10b981';
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 2/3: Creating File...</div>
+        <div style="font-size: 13px;">Preparing complete HTML file for download...</div>
+    `;
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Download the file
+            await downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount);
+
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 3/3: Finalizing...</div>
+        <div style="font-size: 13px;">Hiding buttons and securing document...</div>
+    `;
+
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Hide save/download section
+            const saveDownloadSection = document.querySelector('.save-download-section');
+            if (saveDownloadSection) {
+                saveDownloadSection.style.display = 'none';
+            }
+
+            // Apply protection
+            applySavedDocumentProtection();
+
+            console.log('✅ Process Complete!');
+        }
+
+        // Download function after save
+        async function downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount) {
+            const notificationEl = document.getElementById('notification');
+            const startTime = Date.now();
+
+            // Expand all sections
+            const allSections = document.querySelectorAll('.content-area');
+            const allSubsections = document.querySelectorAll('.sop-content');
+            const allDetails = document.querySelectorAll('.sop-detail');
+
+            allSections.forEach(section => section.classList.add('active'));
+            allSubsections.forEach(subsection => subsection.classList.add('active'));
+            allDetails.forEach(detail => detail.style.display = 'block');
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Clone document
+            const clonedDoc = document.documentElement.cloneNode(true);
+
+            // Process cloned document
+            const clonedImages = clonedDoc.querySelectorAll('img');
+            clonedImages.forEach(img => {
+                img.removeAttribute('data-image-id');
+                img.removeAttribute('data-original-src');
+                img.removeAttribute('onclick');
+                img.removeAttribute('onerror');
+                img.style.cursor = 'default';
+            });
+
+            // Remove interactive elements
+            const elementsToRemove = [
+                ...clonedDoc.querySelectorAll('.main-btn'),
+                ...clonedDoc.querySelectorAll('.subsection-nav'),
+                ...clonedDoc.querySelectorAll('.detail-nav'),
+                ...clonedDoc.querySelectorAll('[onclick*="Back"]'),
+                ...clonedDoc.querySelectorAll('.save-download-section'),
+                ...clonedDoc.querySelectorAll('.notification'),
+                ...clonedDoc.querySelectorAll('script')
+            ];
+
+            elementsToRemove.forEach(el => el.remove());
+
+            // Add read-only banner
+            const bodyElement = clonedDoc.querySelector('body');
+            if (bodyElement) {
+                const readOnlyBanner = clonedDoc.createElement('div');
+                readOnlyBanner.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        `;
+                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
+                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
+            }
+
+            // Add styles for expanded view
+            const readOnlyStyles = clonedDoc.createElement('style');
+            readOnlyStyles.textContent = `
+        body { overflow-y: auto !important; }
+        .content-area, .sop-content, .sop-detail {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .content-area { margin-bottom: 40px; border-bottom: 3px solid #e5e7eb; padding-bottom: 40px; }
+        .sop-content { margin-bottom: 30px; }
+        .sop-detail { margin-bottom: 20px; }
+    `;
+
+            const clonedHead = clonedDoc.querySelector('head');
+            if (clonedHead) {
+                clonedHead.appendChild(readOnlyStyles);
+            }
+
+            // Create and download file
+            const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const actualFileSize = blob.size;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().slice(0, 10);
+            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
+
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
+
+            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+            const totalImages = savedCount + alreadySavedCount;
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 5px;">✅ Download Complete!</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${totalImages} images embedded</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
+        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
+        ${failedCount > 0 ? `<div style="font-size: 12px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedCount} images failed</div>` : ''}
+        <div style="font-size: 12px; margin-top: 5px;">🔒 Document is now read-only</div>
+    `;
+            notificationEl.style.background = failedCount > 0 ? '#f59e0b' : '#10b981';
 
             setTimeout(() => {
-                alert('✅ Images are now embedded!\n\n📝 IMPORTANT: Press Ctrl+S (or Cmd+S on Mac) to save this HTML file.\n\n📤 After saving, you can share the file and all images will be included!');
-            }, 500);
-
-            setTimeout(() => {
-                notification.classList.remove('show');
+                notificationEl.classList.remove('show');
             }, 6000);
         }
 
-        // Download HTML
+        function uploadImage(container) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+
+            input.onchange = function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const imageId = 'img_' + Date.now();
+                        const imageData = event.target.result;
+                        imageStorage[imageId] = imageData;
+
+                        container.innerHTML = `
+                    <div class="image-wrapper">
+                        <img src="${imageData}" alt="SOP Image" data-image-id="${imageId}">
+                    </div>
+                `;
+                        container.classList.add('has-image');
+
+                        const img = container.querySelector('img');
+                        img.onclick = function (e) {
+                            e.stopPropagation();
+                            if (confirm('Do you want to replace this image?')) {
+                                uploadImage(container);
+                            }
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // Standalone download function
         async function downloadHTML() {
             const notificationEl = document.getElementById('notification');
             notificationEl.innerHTML = `
-                <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Preparing Download...</div>
-                <div style="font-size: 13px;">Processing all sections...</div>
-            `;
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Fast Download Mode</div>
+        <div style="font-size: 13px;">Preparing document with all images...</div>
+    `;
             notificationEl.style.background = '#8b5cf6';
             notificationEl.classList.add('show');
+
+            const startTime = Date.now();
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            const allSections = document.querySelectorAll('.content-area');
+            const allSubsections = document.querySelectorAll('.sop-content');
+            const allDetails = document.querySelectorAll('.sop-detail');
+
+            const originalSectionStates = Array.from(allSections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalSubsectionStates = Array.from(allSubsections).map(el => ({
+                element: el,
+                className: el.className
+            }));
+            const originalDetailStates = Array.from(allDetails).map(el => ({
+                element: el,
+                display: el.style.display
+            }));
+
+            allSections.forEach(section => section.classList.add('active'));
+            allSubsections.forEach(subsection => subsection.classList.add('active'));
+            allDetails.forEach(detail => detail.style.display = 'block');
 
             await new Promise(resolve => setTimeout(resolve, 300));
 
             const clonedDoc = document.documentElement.cloneNode(true);
 
-            // Process images in cloned document
+            originalSectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalSubsectionStates.forEach(state => {
+                state.element.className = state.className;
+            });
+            originalDetailStates.forEach(state => {
+                state.element.style.display = state.display;
+            });
+
             const images = document.querySelectorAll('img');
             const clonedImages = clonedDoc.querySelectorAll('img');
 
-            for (let i = 0; i < images.length; i++) {
-                const originalImg = images[i];
-                const clonedImg = clonedImages[i];
+            const totalImages = images.length;
+            let successfulEmbeds = 0;
+            let failedEmbeds = 0;
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Processing ${totalImages} Images...</div>
+        <div style="font-size: 13px;">Please wait...</div>
+    `;
+
+            for (let index = 0; index < images.length; index++) {
+                const originalImg = images[index];
+                const clonedImg = clonedImages[index];
 
                 if (!clonedImg) continue;
 
                 if (originalImg.src.startsWith('data:')) {
                     clonedImg.src = originalImg.src;
-                } else if (originalImg.hasAttribute('data-image-id')) {
-                    const imageId = originalImg.getAttribute('data-image-id');
-                    if (imageStorage[imageId]) {
-                        clonedImg.src = imageStorage[imageId];
+                    successfulEmbeds++;
+                } else if (originalImg.hasAttribute('data-image-id') && imageStorage[originalImg.getAttribute('data-image-id')]) {
+                    clonedImg.src = imageStorage[originalImg.getAttribute('data-image-id')];
+                    successfulEmbeds++;
+                } else {
+                    try {
+                        const directUrl = convertGoogleDriveURL(originalImg.src);
+                        const blob = await fetchImageWithProxy(directUrl);
+                        const base64 = await new Promise((resolve) => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => resolve(reader.result);
+                            reader.readAsDataURL(blob);
+                        });
+                        clonedImg.src = base64;
+                        successfulEmbeds++;
+                    } catch (error) {
+                        console.warn('Could not embed image:', originalImg.src, error);
+                        failedEmbeds++;
                     }
                 }
+
+                clonedImg.removeAttribute('data-image-id');
+                clonedImg.removeAttribute('data-original-src');
+                clonedImg.removeAttribute('onclick');
+                clonedImg.removeAttribute('onerror');
+                clonedImg.style.cursor = 'default';
             }
 
-            // Remove interactive elements from cloned document
-            const clonedModal = clonedDoc.querySelector('#uploadModal');
-            if (clonedModal) clonedModal.remove();
-
-            const clonedSaveSection = clonedDoc.querySelector('.save-download-section');
-            if (clonedSaveSection) clonedSaveSection.remove();
-
-            const clonedNotification = clonedDoc.querySelector('.notification');
-            if (clonedNotification) clonedNotification.remove();
-
-            const clonedScripts = clonedDoc.querySelectorAll('script');
-            clonedScripts.forEach(script => script.remove());
-
-            // Make all sections visible
-            const clonedSections = clonedDoc.querySelectorAll('.content-area');
-            clonedSections.forEach(section => {
-                section.style.display = 'block';
-                section.style.marginBottom = '40px';
-            });
-
-            const clonedSubsections = clonedDoc.querySelectorAll('.sop-content');
-            clonedSubsections.forEach(sub => sub.style.display = 'block');
-
-            // Remove navigation buttons
-            const clonedNavButtons = clonedDoc.querySelectorAll('.subsection-nav, .detail-nav, .back-btn, .main-buttons');
-            clonedNavButtons.forEach(nav => nav.remove());
+            // Remove interactive elements
+            const elementsToRemove = [
+                ...clonedDoc.querySelectorAll('.main-btn'),
+                ...clonedDoc.querySelectorAll('.subsection-nav'),
+                ...clonedDoc.querySelectorAll('.detail-nav'),
+                ...clonedDoc.querySelectorAll('[onclick*="Back"]'),
+                ...clonedDoc.querySelectorAll('.save-download-section'),
+                ...clonedDoc.querySelectorAll('.notification'),
+                ...clonedDoc.querySelectorAll('script')
+            ];
+            elementsToRemove.forEach(el => el.remove());
 
             // Add read-only banner
-            const banner = clonedDoc.createElement('div');
-            banner.style.cssText = `
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 15px;
-                text-align: center;
-                font-weight: bold;
-                position: sticky;
-                top: 0;
-                z-index: 10000;
-            `;
-            banner.textContent = '📄 READ-ONLY VERSION - Complete SOP Handbook';
-            clonedDoc.querySelector('body').insertBefore(banner, clonedDoc.querySelector('body').firstChild);
+            const bodyElement = clonedDoc.querySelector('body');
+            if (bodyElement) {
+                const readOnlyBanner = clonedDoc.createElement('div');
+                readOnlyBanner.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        `;
+                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
+                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
+            }
 
-            // Create and download file
+            const readOnlyStyles = clonedDoc.createElement('style');
+            readOnlyStyles.textContent = `
+        body { overflow-y: auto !important; }
+        .content-area, .sop-content, .sop-detail {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .content-area { margin-bottom: 40px; border-bottom: 3px solid #e5e7eb; padding-bottom: 40px; }
+    `;
+            const clonedHead = clonedDoc.querySelector('head');
+            if (clonedHead) {
+                clonedHead.appendChild(readOnlyStyles);
+            }
+
             const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
             const blob = new Blob([htmlContent], { type: 'text/html' });
+            const actualFileSize = blob.size;
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
 
             const timestamp = new Date().toISOString().slice(0, 10);
-            link.download = `Master_SOP_Handbook_${timestamp}.html`;
+            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
             link.click();
 
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
+
+            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
             notificationEl.innerHTML = `
-                <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">✅ Download Complete!</div>
-                <div style="font-size: 13px;">File downloaded successfully</div>
-            `;
-            notificationEl.style.background = '#10b981';
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">✅ Download Complete!</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${successfulEmbeds} of ${totalImages} images embedded</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
+        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
+        ${failedEmbeds > 0 ? `<div style="font-size: 13px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedEmbeds} images failed</div>` : ''}
+    `;
+            notificationEl.style.background = failedEmbeds > 0 ? '#f59e0b' : '#10b981';
 
             setTimeout(() => {
                 notificationEl.classList.remove('show');
-            }, 3000);
+            }, 6000);
         }
 
-        // Show Section
         function showSection(sectionId) {
             const allSections = document.querySelectorAll('.content-area');
-            allSections.forEach(section => section.classList.remove('active'));
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
 
             const allButtons = document.querySelectorAll('.main-btn');
-            allButtons.forEach(btn => btn.classList.remove('active'));
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
 
             const selectedSection = document.getElementById(sectionId);
             if (selectedSection) {
@@ -1623,34 +2003,42 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Hide All Sections
         function hideAllSections() {
             const allSections = document.querySelectorAll('.content-area');
-            allSections.forEach(section => section.classList.remove('active'));
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
 
             const allButtons = document.querySelectorAll('.main-btn');
-            allButtons.forEach(btn => btn.classList.remove('active'));
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Show Subsection
         function showSubsection(section, subsection, button) {
             const parent = button.closest('.subsection-nav');
             const allSubButtons = parent.querySelectorAll('.subsection-btn');
-            allSubButtons.forEach(btn => btn.classList.remove('active'));
+            allSubButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
 
             button.classList.add('active');
 
             const allContents = button.closest('.content-area').querySelectorAll('.sop-content');
-            allContents.forEach(content => content.classList.remove('active'));
+            allContents.forEach(content => {
+                content.classList.remove('active');
+            });
 
             const selectedContent = document.getElementById(`${section}-${subsection}`);
             if (selectedContent) {
                 selectedContent.classList.add('active');
 
                 const allDetails = selectedContent.querySelectorAll('.sop-detail');
-                allDetails.forEach(detail => detail.style.display = 'none');
+                allDetails.forEach(detail => {
+                    detail.style.display = 'none';
+                });
 
                 const firstDetail = selectedContent.querySelector('.sop-detail');
                 if (firstDetail) {
@@ -1668,17 +2056,20 @@
             }
         }
 
-        // Show Detail
         function showDetail(subsection, detail, button) {
             const parent = button.closest('.detail-nav');
             const allDetailButtons = parent.querySelectorAll('.detail-btn');
-            allDetailButtons.forEach(btn => btn.classList.remove('active'));
+            allDetailButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
 
             button.classList.add('active');
 
             const sopContent = button.closest('.sop-content');
             const allDetails = sopContent.querySelectorAll('.sop-detail');
-            allDetails.forEach(d => d.style.display = 'none');
+            allDetails.forEach(d => {
+                d.style.display = 'none';
+            });
 
             const selectedDetail = document.getElementById(`${subsection}-${detail}`);
             if (selectedDetail) {
@@ -1686,7 +2077,6 @@
             }
         }
 
-        // Navigate to SOP
         function navigateToSOP(section, subsection, detail) {
             hideAllSections();
 
@@ -1712,69 +2102,125 @@
                                     detailBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
                                 }
                             }, 200);
+                        } else {
+                            subsectionBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
                     }
                 }, 300);
             }
 
-            showNotification('Navigating to SOP... 🎯');
+            const notification = document.getElementById('notification');
+            notification.textContent = 'Navigating to SOP... 🎯';
+            notification.style.background = '#667eea';
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
         }
 
-        // Window onload
-        window.onload = function () {
+        function toggleSOPDropdown(termId, section, subsection, detail, button) {
+            const dropdownRow = document.getElementById('sop-dropdown-' + termId);
+            const allDropdowns = document.querySelectorAll('.sop-dropdown-row');
+            const allButtons = document.querySelectorAll('.detail-btn');
+
+            allDropdowns.forEach(dropdown => {
+                if (dropdown.id !== 'sop-dropdown-' + termId) {
+                    dropdown.classList.remove('show');
+                }
+            });
+
+            allButtons.forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove('active-dropdown');
+                }
+            });
+
+            if (dropdownRow.classList.contains('show')) {
+                dropdownRow.classList.remove('show');
+                button.classList.remove('active-dropdown');
+            } else {
+                dropdownRow.classList.add('show');
+                button.classList.add('active-dropdown');
+
+                setTimeout(() => {
+                    dropdownRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Initialize on page load
+        window.onload = async function () {
+            console.log('🚀 Initializing SOP Handler...');
+
+            // Convert all Google Drive images to base64
+            await convertExistingImages();
+
+            // Setup keyboard shortcuts
+            setupSaveHandler();
+
+            // Check if already saved
             if (isDocumentSaved()) {
                 const saveDownloadSection = document.querySelector('.save-download-section');
                 if (saveDownloadSection) {
                     saveDownloadSection.style.display = 'none';
                 }
                 applySavedDocumentProtection();
+                console.log('Document is in read-only mode');
+            } else {
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    notification.innerHTML = `
+                <div style="font-weight: bold; margin-bottom: 5px;">💡 Quick Tip</div>
+                <div style="font-size: 13px;">Press <strong>Ctrl+S</strong> (or Cmd+S) to save with all images!</div>
+            `;
+                    notification.style.background = '#6366f1';
+                    notification.classList.add('show');
+                    setTimeout(() => notification.classList.remove('show'), 5000);
+                }
             }
 
-            // Auto-load first Google Drive image
-            const firstImage = document.querySelector('#first-step-image img');
-            if (firstImage && firstImage.complete && !firstImage.naturalWidth) {
-                firstImage.onerror();
+            // Add image styles
+            if (!document.querySelector('#sop-image-styles')) {
+                const style = document.createElement('style');
+                style.id = 'sop-image-styles';
+                style.textContent = `
+            .step-image-container {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f5f5f5;
+                border-radius: 8px;
+                padding: 10px;
+                box-sizing: border-box;
+                min-height: 200px;
             }
+            .image-wrapper {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-height: 500px;
+            }
+            .step-image-container img {
+                max-width: 100%;
+                max-height: 500px;
+                height: auto;
+                object-fit: contain;
+                display: block;
+                border-radius: 4px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        `;
+                document.head.appendChild(style);
+            }
+
+            console.log('✅ SOP Handler Ready!');
         };
     </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+</body>
 
-
-</body></html>
+</html>
