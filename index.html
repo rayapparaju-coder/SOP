@@ -1036,7 +1036,7 @@
 
     <div class="container">
         <div class="main-buttons">
-            <div class="main-btn" onclick="showSection(&#39;hub-portal&#39;)">
+            <div class="main-btn active" onclick="showSection(&#39;hub-portal&#39;)">
                 <div class="icon">🏬</div>
                 <h2>Hub Portal</h2>
                 <p>Inbound &amp; Outbound Operations</p>
@@ -1068,24 +1068,24 @@
             </div>
         </div>
         <!-- HUB PORTAL SECTION -->
-        <div id="hub-portal" class="content-area">
+        <div id="hub-portal" class="content-area active">
             <button class="back-btn" onclick="hideAllSections()">← Back to Main Menu</button>
             <h2 style="color: #667eea; margin-bottom: 20px;">🏬 Hub Portal Activities</h2>
 
             <div class="subsection-nav">
-                <button class="subsection-btn" onclick="showSubsection(&#39;hub&#39;, &#39;inbound&#39;, this)">📥 Inbound
+                <button class="subsection-btn active" onclick="showSubsection(&#39;hub&#39;, &#39;inbound&#39;, this)">📥 Inbound
                     Process</button>
             </div>
 
-            <div id="hub-inbound" class="sop-content">
+            <div id="hub-inbound" class="sop-content active">
                 <h3 style="color: #764ba2; margin-bottom: 25px;">📥 Inbound Process</h3>
 
                 <div class="detail-nav">
-                    <button class="detail-btn" onclick="showDetail(&#39;inbound&#39;, &#39;master-manifest&#39;, this)">1️⃣ Master
+                    <button class="detail-btn active" onclick="showDetail(&#39;inbound&#39;, &#39;master-manifest&#39;, this)">1️⃣ Master
                         Manifest Receive</button>
                 </div>
 
-                <div id="inbound-master-manifest" class="sop-detail">
+                <div id="inbound-master-manifest" class="sop-detail" style="display: block;">
                     <div class="sop-step">
                         <h3><span class="step-number">1.1 </span>Receiving Manifest from Master Manifest</h3>
                         <div class="step-description">
@@ -1352,7 +1352,6 @@
 
         // Check if document has been saved
         function isDocumentSaved() {
-            // Check if all images are already base64 (indicating document was saved)
             const images = document.querySelectorAll('img');
             let allSaved = true;
 
@@ -1369,11 +1368,9 @@
         // Handle Ctrl+S / Cmd+S to save and download
         function setupSaveHandler() {
             document.addEventListener('keydown', async function (e) {
-                // Check for Ctrl+S (Windows/Linux) or Cmd+S (Mac)
                 if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
                     e.preventDefault();
 
-                    // Check if already saved
                     if (isDocumentSaved()) {
                         const notification = document.getElementById('notification');
                         notification.innerHTML = `
@@ -1386,105 +1383,76 @@
                         return false;
                     }
 
-                    // Trigger the save and download process
                     await saveAllChanges();
                     return false;
                 }
             });
         }
 
-        // Disable right-click, view source, and inspect for saved documents
+        // Disable right-click and dev tools for saved documents
         function applySavedDocumentProtection() {
-            // Disable right-click
             document.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
                 return false;
             });
 
-            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
             document.addEventListener('keydown', function (e) {
-                // F12
-                if (e.keyCode === 123) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Ctrl+Shift+I (Inspect)
-                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Ctrl+Shift+J (Console)
-                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Ctrl+U (View Source)
-                if (e.ctrlKey && e.keyCode === 85) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Cmd+Option+I (Mac Inspect)
-                if (e.metaKey && e.altKey && e.keyCode === 73) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Cmd+Option+J (Mac Console)
-                if (e.metaKey && e.altKey && e.keyCode === 74) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Cmd+U (Mac View Source)
-                if (e.metaKey && e.keyCode === 85) {
+                // F12, Ctrl+Shift+I/J, Ctrl+U, etc.
+                if (e.keyCode === 123 ||
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+                    (e.ctrlKey && e.keyCode === 85) ||
+                    (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 74)) ||
+                    (e.metaKey && e.keyCode === 85)) {
                     e.preventDefault();
                     return false;
                 }
             });
         }
 
-        // Convert Google Drive URL to direct image URL
+        // Convert Google Drive URL to direct download URL
         function convertGoogleDriveURL(url) {
-            // Extract file ID from various Google Drive URL formats
             let fileId = null;
 
             if (url.includes('drive.google.com')) {
-                // Format: https://drive.google.com/file/d/FILE_ID/view
-                const match1 = url.match(/\/file\/d\/([^\/]+)/);
-                if (match1) fileId = match1[1];
+                // Various Google Drive URL formats
+                const patterns = [
+                    /\/file\/d\/([^\/]+)/,
+                    /[?&]id=([^&]+)/,
+                    /\/d\/([^\/]+)/
+                ];
 
-                // Format: https://drive.google.com/open?id=FILE_ID
-                const match2 = url.match(/[?&]id=([^&]+)/);
-                if (match2) fileId = match2[1];
-
-                // Format: https://drive.google.com/thumbnail?id=FILE_ID
-                const match3 = url.match(/[?&]id=([^&]+)/);
-                if (match3) fileId = match3[1];
-
-                // Format: https://drive.google.com/uc?export=view&id=FILE_ID
-                const match4 = url.match(/id=([^&]+)/);
-                if (match4) fileId = match4[1];
+                for (const pattern of patterns) {
+                    const match = url.match(pattern);
+                    if (match) {
+                        fileId = match[1];
+                        break;
+                    }
+                }
             }
 
             if (fileId) {
-                // Return the direct download URL
                 return `https://drive.google.com/uc?export=download&id=${fileId}`;
             }
 
             return url;
         }
 
-        // Fetch image with CORS proxy if needed
+        // Fetch image with CORS handling
         async function fetchImageWithProxy(url) {
+            // Try direct fetch first
             try {
-                // Try direct fetch first
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
                 if (response.ok) {
                     return await response.blob();
                 }
             } catch (error) {
-                console.log('Direct fetch failed, trying with CORS proxy...');
+                console.log('Direct fetch failed, trying proxy...');
             }
 
-            // If direct fetch fails, try with CORS proxy
+            // Try CORS proxy
             try {
                 const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
                 const response = await fetch(proxyUrl);
@@ -1492,18 +1460,27 @@
                     return await response.blob();
                 }
             } catch (error) {
-                console.warn('CORS proxy fetch also failed:', error);
+                console.warn('Proxy fetch failed:', error);
             }
 
-            throw new Error('Failed to fetch image');
+            // Try another proxy as fallback
+            try {
+                const corsProxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                const response = await fetch(corsProxy);
+                if (response.ok) {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.warn('All fetch methods failed:', error);
+            }
+
+            throw new Error('Failed to fetch image from all sources');
         }
 
         // Convert image URL to base64
         async function convertImageToBase64(url) {
             try {
-                // Convert Google Drive URLs to direct download URLs
                 const directUrl = convertGoogleDriveURL(url);
-
                 const blob = await fetchImageWithProxy(directUrl);
 
                 return new Promise((resolve, reject) => {
@@ -1513,62 +1490,277 @@
                     reader.readAsDataURL(blob);
                 });
             } catch (error) {
-                console.error('Failed to convert image to base64:', url, error);
+                console.error('Failed to convert image:', url, error);
                 throw error;
             }
         }
 
-        // Convert existing file path images to base64 on page load
+        // Convert all images on page load
         async function convertExistingImages() {
-            const images = document.querySelectorAll('img[src^="/Images"], img[src^="Images"], img[src^="./Images"], img[src*="drive.google.com"], img[src^="http"]');
+            const images = document.querySelectorAll('img[src^="http"], img[src*="drive.google.com"]');
 
-            console.log(`Found ${images.length} images to convert`);
+            console.log(`Found ${images.length} external images to convert`);
             let converted = 0;
+            let failed = 0;
 
             for (const img of images) {
                 try {
                     const originalSrc = img.src;
 
-                    // Skip if already base64
                     if (originalSrc.startsWith('data:')) {
-                        console.log('Image already in base64 format, skipping:', originalSrc.substring(0, 50));
+                        console.log('Already base64, skipping');
                         continue;
                     }
 
-                    let blob;
+                    const directUrl = convertGoogleDriveURL(originalSrc);
+                    console.log(`Converting: ${directUrl}`);
 
-                    // Handle Google Drive URLs
-                    if (originalSrc.includes('drive.google.com')) {
-                        const directUrl = convertGoogleDriveURL(originalSrc);
-                        blob = await fetchImageWithProxy(directUrl);
-                    } else {
-                        // Handle regular URLs and relative paths
-                        const response = await fetch(originalSrc);
-                        blob = await response.blob();
-                    }
+                    const blob = await fetchImageWithProxy(directUrl);
 
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const imageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                        const imageData = event.target.result;
-                        imageStorage[imageId] = imageData;
+                    const base64 = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
 
-                        img.setAttribute('data-image-id', imageId);
-                        img.setAttribute('data-original-src', originalSrc);
-                        img.src = imageData;
+                    const imageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    imageStorage[imageId] = base64;
 
-                        converted++;
-                        console.log(`Converted ${converted}/${images.length}: ${originalSrc}`);
-                    };
-                    reader.readAsDataURL(blob);
+                    img.setAttribute('data-image-id', imageId);
+                    img.setAttribute('data-original-src', originalSrc);
+                    img.src = base64;
 
-                    await new Promise(resolve => setTimeout(resolve, 100));
+                    converted++;
+                    console.log(`✓ Converted ${converted}/${images.length}`);
+
+                    // Small delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 200));
                 } catch (error) {
-                    console.warn('Could not convert image:', img.src, error);
+                    console.warn('Failed to convert image:', img.src, error);
+                    failed++;
                 }
             }
 
-            console.log(`Conversion complete! ${converted} images embedded.`);
+            console.log(`Conversion complete! ${converted} succeeded, ${failed} failed`);
+
+            // Show notification if any conversions happened
+            if (converted > 0 || failed > 0) {
+                const notification = document.getElementById('notification');
+                if (notification) {
+                    notification.innerHTML = `
+                <div style="font-weight: bold; margin-bottom: 5px;">🎉 Images Loaded</div>
+                <div style="font-size: 13px;">${converted} images embedded successfully${failed > 0 ? `, ${failed} failed` : ''}</div>
+            `;
+                    notification.style.background = failed > 0 ? '#f59e0b' : '#10b981';
+                    notification.classList.add('show');
+                    setTimeout(() => notification.classList.remove('show'), 3000);
+                }
+            }
+        }
+
+        // Main save and download function
+        async function saveAllChanges() {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 1/3: Embedding Images...</div>
+        <div style="font-size: 13px;">Converting all images to base64 format...</div>
+    `;
+            notification.style.background = '#3b82f6';
+            notification.classList.add('show');
+
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            const allImages = document.querySelectorAll('img');
+            let savedCount = 0;
+            let alreadySavedCount = 0;
+            let failedCount = 0;
+
+            // Embed all images
+            for (const img of allImages) {
+                if (img.src.startsWith('data:')) {
+                    alreadySavedCount++;
+                    continue;
+                }
+
+                const imageId = img.getAttribute('data-image-id');
+                if (imageId && imageStorage[imageId]) {
+                    img.src = imageStorage[imageId];
+                    savedCount++;
+                    continue;
+                }
+
+                try {
+                    const directUrl = convertGoogleDriveURL(img.src);
+                    const blob = await fetchImageWithProxy(directUrl);
+
+                    const base64 = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+
+                    const newImageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    imageStorage[newImageId] = base64;
+                    img.setAttribute('data-image-id', newImageId);
+                    img.src = base64;
+                    savedCount++;
+
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                } catch (error) {
+                    console.warn('Could not save image:', img.src, error);
+                    failedCount++;
+                }
+            }
+
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 2/3: Creating File...</div>
+        <div style="font-size: 13px;">Preparing complete HTML file for download...</div>
+    `;
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Download the file
+            await downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount);
+
+            notification.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 3/3: Finalizing...</div>
+        <div style="font-size: 13px;">Hiding buttons and securing document...</div>
+    `;
+
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Hide save/download section
+            const saveDownloadSection = document.querySelector('.save-download-section');
+            if (saveDownloadSection) {
+                saveDownloadSection.style.display = 'none';
+            }
+
+            // Apply protection
+            applySavedDocumentProtection();
+
+            console.log('✅ Process Complete!');
+        }
+
+        // Download function after save
+        async function downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount) {
+            const notificationEl = document.getElementById('notification');
+            const startTime = Date.now();
+
+            // Expand all sections
+            const allSections = document.querySelectorAll('.content-area');
+            const allSubsections = document.querySelectorAll('.sop-content');
+            const allDetails = document.querySelectorAll('.sop-detail');
+
+            allSections.forEach(section => section.classList.add('active'));
+            allSubsections.forEach(subsection => subsection.classList.add('active'));
+            allDetails.forEach(detail => detail.style.display = 'block');
+
+            await new Promise(resolve => setTimeout(resolve, 300));
+
+            // Clone document
+            const clonedDoc = document.documentElement.cloneNode(true);
+
+            // Process cloned document
+            const clonedImages = clonedDoc.querySelectorAll('img');
+            clonedImages.forEach(img => {
+                img.removeAttribute('data-image-id');
+                img.removeAttribute('data-original-src');
+                img.removeAttribute('onclick');
+                img.removeAttribute('onerror');
+                img.style.cursor = 'default';
+            });
+
+            // Remove interactive elements
+            const elementsToRemove = [
+                ...clonedDoc.querySelectorAll('.main-btn'),
+                ...clonedDoc.querySelectorAll('.subsection-nav'),
+                ...clonedDoc.querySelectorAll('.detail-nav'),
+                ...clonedDoc.querySelectorAll('[onclick*="Back"]'),
+                ...clonedDoc.querySelectorAll('.save-download-section'),
+                ...clonedDoc.querySelectorAll('.notification'),
+                ...clonedDoc.querySelectorAll('script')
+            ];
+
+            elementsToRemove.forEach(el => el.remove());
+
+            // Add read-only banner
+            const bodyElement = clonedDoc.querySelector('body');
+            if (bodyElement) {
+                const readOnlyBanner = clonedDoc.createElement('div');
+                readOnlyBanner.style.cssText = `
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        `;
+                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
+                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
+            }
+
+            // Add styles for expanded view
+            const readOnlyStyles = clonedDoc.createElement('style');
+            readOnlyStyles.textContent = `
+        body { overflow-y: auto !important; }
+        .content-area, .sop-content, .sop-detail {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .content-area { margin-bottom: 40px; border-bottom: 3px solid #e5e7eb; padding-bottom: 40px; }
+        .sop-content { margin-bottom: 30px; }
+        .sop-detail { margin-bottom: 20px; }
+    `;
+
+            const clonedHead = clonedDoc.querySelector('head');
+            if (clonedHead) {
+                clonedHead.appendChild(readOnlyStyles);
+            }
+
+            // Create and download file
+            const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const actualFileSize = blob.size;
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().slice(0, 10);
+            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
+
+            link.click();
+            URL.revokeObjectURL(link.href);
+
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
+
+            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
+            const totalImages = savedCount + alreadySavedCount;
+
+            notificationEl.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 5px;">✅ Download Complete!</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${totalImages} images embedded</div>
+        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
+        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
+        ${failedCount > 0 ? `<div style="font-size: 12px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedCount} images failed</div>` : ''}
+        <div style="font-size: 12px; margin-top: 5px;">🔒 Document is now read-only</div>
+    `;
+            notificationEl.style.background = failedCount > 0 ? '#f59e0b' : '#10b981';
+
+            setTimeout(() => {
+                notificationEl.classList.remove('show');
+            }, 6000);
         }
 
         function uploadImage(container) {
@@ -1606,283 +1798,7 @@
             input.click();
         }
 
-        // NEW COMBINED FUNCTION - Save All and Auto Download
-        async function saveAllChanges() {
-            const notification = document.getElementById('notification');
-            notification.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 1/3: Embedding Images...</div>
-        <div style="font-size: 13px;">Converting all images to base64 format...</div>
-    `;
-            notification.style.background = '#3b82f6';
-            notification.classList.add('show');
-
-            await new Promise(resolve => setTimeout(resolve, 100));
-
-            const allImages = document.querySelectorAll('img');
-            let savedCount = 0;
-            let alreadySavedCount = 0;
-            let failedCount = 0;
-
-            // Embed all images first
-            for (const img of allImages) {
-                if (img.src.startsWith('data:')) {
-                    alreadySavedCount++;
-                    continue;
-                }
-
-                const imageId = img.getAttribute('data-image-id');
-                if (imageId && imageStorage[imageId]) {
-                    img.src = imageStorage[imageId];
-                    savedCount++;
-                    continue;
-                }
-
-                try {
-                    let blob;
-
-                    if (img.src.includes('drive.google.com')) {
-                        const directUrl = convertGoogleDriveURL(img.src);
-                        blob = await fetchImageWithProxy(directUrl);
-                    } else {
-                        const response = await fetch(img.src);
-                        blob = await response.blob();
-                    }
-
-                    const base64 = await new Promise((resolve) => {
-                        const reader = new FileReader();
-                        reader.onloadend = () => resolve(reader.result);
-                        reader.readAsDataURL(blob);
-                    });
-
-                    const newImageId = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                    imageStorage[newImageId] = base64;
-                    img.setAttribute('data-image-id', newImageId);
-                    img.src = base64;
-                    savedCount++;
-                } catch (error) {
-                    console.warn('Could not save image:', img.src, error);
-                    failedCount++;
-                }
-            }
-
-            notification.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 2/3: Creating File...</div>
-        <div style="font-size: 13px;">Preparing complete HTML file for download...</div>
-    `;
-
-            // Wait a moment to ensure all images are processed
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            // Now trigger the download
-            await downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount);
-
-            notification.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">🚀 Step 3/3: Finalizing...</div>
-        <div style="font-size: 13px;">Hiding buttons and securing document...</div>
-    `;
-
-            await new Promise(resolve => setTimeout(resolve, 500));
-
-            // Hide the Save/Download section
-            const saveDownloadSection = document.querySelector('.save-download-section');
-            if (saveDownloadSection) {
-                saveDownloadSection.style.display = 'none';
-            }
-
-            // Apply protection
-            applySavedDocumentProtection();
-
-            console.log('✅ Process Complete: File downloaded and ready to share!');
-        }
-
-        // Helper function for download after save
-        async function downloadHTMLAfterSave(savedCount, alreadySavedCount, failedCount) {
-            const notificationEl = document.getElementById('notification');
-            const startTime = Date.now();
-
-            const allSections = document.querySelectorAll('.content-area');
-            const allSubsections = document.querySelectorAll('.sop-content');
-            const allDetails = document.querySelectorAll('.sop-detail');
-
-            const originalSectionStates = Array.from(allSections).map(el => ({
-                element: el,
-                className: el.className
-            }));
-            const originalSubsectionStates = Array.from(allSubsections).map(el => ({
-                element: el,
-                className: el.className
-            }));
-            const originalDetailStates = Array.from(allDetails).map(el => ({
-                element: el,
-                display: el.style.display
-            }));
-
-            allSections.forEach(section => section.classList.add('active'));
-            allSubsections.forEach(subsection => subsection.classList.add('active'));
-            allDetails.forEach(detail => detail.style.display = 'block');
-
-            await new Promise(resolve => setTimeout(resolve, 300));
-
-            const clonedDoc = document.documentElement.cloneNode(true);
-
-            originalSectionStates.forEach(state => {
-                state.element.className = state.className;
-            });
-            originalSubsectionStates.forEach(state => {
-                state.element.className = state.className;
-            });
-            originalDetailStates.forEach(state => {
-                state.element.style.display = state.display;
-            });
-
-            // Remove interactive elements from cloned document
-            const clonedSections = clonedDoc.querySelectorAll('.content-area');
-            const clonedSubsections = clonedDoc.querySelectorAll('.sop-content');
-            const clonedDetails = clonedDoc.querySelectorAll('.sop-detail');
-
-            clonedSections.forEach(section => section.classList.add('active'));
-            clonedSubsections.forEach(subsection => subsection.classList.add('active'));
-            clonedDetails.forEach(detail => detail.style.display = 'block');
-
-            const imageContainers = clonedDoc.querySelectorAll('.step-image-container');
-            imageContainers.forEach(container => {
-                container.removeAttribute('onclick');
-                container.style.cursor = 'default';
-            });
-
-            const clonedImages = clonedDoc.querySelectorAll('img');
-            clonedImages.forEach(img => {
-                img.removeAttribute('data-image-id');
-                img.removeAttribute('data-original-src');
-                img.removeAttribute('onclick');
-                img.removeAttribute('onerror');
-                img.style.cursor = 'default';
-            });
-
-            const mainButtons = clonedDoc.querySelectorAll('.main-btn');
-            mainButtons.forEach(btn => btn.remove());
-
-            const subsectionNav = clonedDoc.querySelectorAll('.subsection-nav');
-            subsectionNav.forEach(nav => nav.remove());
-
-            const detailNav = clonedDoc.querySelectorAll('.detail-nav');
-            detailNav.forEach(nav => nav.remove());
-
-            const backButtons = clonedDoc.querySelectorAll('[onclick*="Back"]');
-            backButtons.forEach(btn => btn.remove());
-
-            const saveDownloadSection = clonedDoc.querySelector('.save-download-section');
-            if (saveDownloadSection) {
-                saveDownloadSection.remove();
-            }
-
-            const notification = clonedDoc.querySelector('.notification');
-            if (notification) {
-                notification.remove();
-            }
-
-            const scripts = clonedDoc.querySelectorAll('script');
-            scripts.forEach(script => {
-                script.remove();
-            });
-
-            const bodyElement = clonedDoc.querySelector('body');
-            if (bodyElement) {
-                const readOnlyBanner = clonedDoc.createElement('div');
-                readOnlyBanner.style.cssText = `
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 16px;
-            position: sticky;
-            top: 0;
-            z-index: 10000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        `;
-                readOnlyBanner.textContent = '📄 READ-ONLY VERSION - All Sections Expanded';
-                bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
-            }
-
-            const styleElement = document.getElementById('sop-image-styles');
-            if (styleElement && !clonedDoc.getElementById('sop-image-styles')) {
-                const clonedHead = clonedDoc.querySelector('head');
-                if (clonedHead) {
-                    clonedHead.appendChild(styleElement.cloneNode(true));
-                }
-            }
-
-            const readOnlyStyles = clonedDoc.createElement('style');
-            readOnlyStyles.textContent = `
-        body {
-            overflow-y: auto !important;
-        }
-        .content-area {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin-bottom: 40px !important;
-            border-bottom: 3px solid #e5e7eb;
-            padding-bottom: 40px;
-        }
-        .sop-content {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin-bottom: 30px !important;
-        }
-        .sop-detail {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin-bottom: 20px !important;
-        }
-    `;
-            const clonedHead = clonedDoc.querySelector('head');
-            if (clonedHead) {
-                clonedHead.appendChild(readOnlyStyles);
-            }
-
-            const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const actualFileSize = blob.size;
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-
-            const timestamp = new Date().toISOString().slice(0, 10);
-            link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
-
-            link.click();
-            URL.revokeObjectURL(link.href);
-
-            function formatBytes(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-            }
-
-            const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
-            const totalImages = savedCount + alreadySavedCount;
-
-            notificationEl.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 5px;">✅ Complete!</div>
-        <div style="font-size: 13px; margin-bottom: 4px;">📊 ${totalImages} images embedded and downloaded</div>
-        <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
-        <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
-        ${failedCount > 0 ? `<div style="font-size: 12px; color: #fbbf24; margin-top: 4px;">⚠️ ${failedCount} images failed</div>` : ''}
-        <div style="font-size: 12px; margin-top: 5px;">🔒 Document is now in read-only mode</div>
-    `;
-            notificationEl.style.background = failedCount > 0 ? '#f59e0b' : '#10b981';
-
-            setTimeout(() => {
-                notificationEl.classList.remove('show');
-            }, 6000);
-        }
-
-        // ORIGINAL STANDALONE DOWNLOAD FUNCTION (kept for compatibility)
+        // Standalone download function
         async function downloadHTML() {
             const notificationEl = document.getElementById('notification');
             notificationEl.innerHTML = `
@@ -1936,22 +1852,11 @@
             const totalImages = images.length;
             let successfulEmbeds = 0;
             let failedEmbeds = 0;
-            let estimatedSize = 0;
-
-            function formatBytes(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-            }
 
             notificationEl.innerHTML = `
         <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Processing ${totalImages} Images...</div>
-        <div style="font-size: 13px;">Please wait, this may take a moment...</div>
+        <div style="font-size: 13px;">Please wait...</div>
     `;
-
-            const imagePromises = [];
 
             for (let index = 0; index < images.length; index++) {
                 const originalImg = images[index];
@@ -1959,121 +1864,49 @@
 
                 if (!clonedImg) continue;
 
-                const imagePromise = (async () => {
-                    let imageSize = 0;
-
-                    if (originalImg.src.startsWith('data:')) {
-                        clonedImg.src = originalImg.src;
-                        imageSize = originalImg.src.length;
+                if (originalImg.src.startsWith('data:')) {
+                    clonedImg.src = originalImg.src;
+                    successfulEmbeds++;
+                } else if (originalImg.hasAttribute('data-image-id') && imageStorage[originalImg.getAttribute('data-image-id')]) {
+                    clonedImg.src = imageStorage[originalImg.getAttribute('data-image-id')];
+                    successfulEmbeds++;
+                } else {
+                    try {
+                        const directUrl = convertGoogleDriveURL(originalImg.src);
+                        const blob = await fetchImageWithProxy(directUrl);
+                        const base64 = await new Promise((resolve) => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => resolve(reader.result);
+                            reader.readAsDataURL(blob);
+                        });
+                        clonedImg.src = base64;
                         successfulEmbeds++;
-                    } else if (originalImg.hasAttribute('data-image-id') && imageStorage[originalImg.getAttribute('data-image-id')]) {
-                        const storedData = imageStorage[originalImg.getAttribute('data-image-id')];
-                        clonedImg.src = storedData;
-                        imageSize = storedData.length;
-                        successfulEmbeds++;
-                    } else {
-                        try {
-                            let blob;
-
-                            // Handle Google Drive URLs
-                            if (originalImg.src.includes('drive.google.com')) {
-                                const directUrl = convertGoogleDriveURL(originalImg.src);
-                                blob = await fetchImageWithProxy(directUrl);
-                            } else {
-                                const response = await fetch(originalImg.src);
-                                blob = await response.blob();
-                            }
-
-                            const base64 = await new Promise((resolve) => {
-                                const reader = new FileReader();
-                                reader.onloadend = () => resolve(reader.result);
-                                reader.readAsDataURL(blob);
-                            });
-
-                            clonedImg.src = base64;
-                            imageSize = base64.length;
-                            successfulEmbeds++;
-                        } catch (error) {
-                            console.warn('Could not embed image:', originalImg.src, error);
-                            failedEmbeds++;
-                        }
-                    }
-
-                    clonedImg.removeAttribute('data-image-id');
-                    clonedImg.removeAttribute('data-original-src');
-                    clonedImg.removeAttribute('onclick');
-                    clonedImg.removeAttribute('onerror');
-                    clonedImg.style.cursor = 'default';
-
-                    return imageSize;
-                })();
-
-                imagePromises.push(imagePromise);
-
-                if (imagePromises.length >= 50 || index === images.length - 1) {
-                    const sizes = await Promise.all(imagePromises);
-                    estimatedSize += sizes.reduce((a, b) => a + b, 0);
-                    imagePromises.length = 0;
-
-                    if (index < images.length - 1) {
-                        const progress = Math.round(((index + 1) / totalImages) * 100);
-                        notificationEl.innerHTML = `
-                    <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">⚡ Processing Images... ${progress}%</div>
-                    <div style="font-size: 13px;">${index + 1} of ${totalImages} completed</div>
-                `;
+                    } catch (error) {
+                        console.warn('Could not embed image:', originalImg.src, error);
+                        failedEmbeds++;
                     }
                 }
+
+                clonedImg.removeAttribute('data-image-id');
+                clonedImg.removeAttribute('data-original-src');
+                clonedImg.removeAttribute('onclick');
+                clonedImg.removeAttribute('onerror');
+                clonedImg.style.cursor = 'default';
             }
 
-            const clonedSections = clonedDoc.querySelectorAll('.content-area');
-            const clonedSubsections = clonedDoc.querySelectorAll('.sop-content');
-            const clonedDetails = clonedDoc.querySelectorAll('.sop-detail');
+            // Remove interactive elements
+            const elementsToRemove = [
+                ...clonedDoc.querySelectorAll('.main-btn'),
+                ...clonedDoc.querySelectorAll('.subsection-nav'),
+                ...clonedDoc.querySelectorAll('.detail-nav'),
+                ...clonedDoc.querySelectorAll('[onclick*="Back"]'),
+                ...clonedDoc.querySelectorAll('.save-download-section'),
+                ...clonedDoc.querySelectorAll('.notification'),
+                ...clonedDoc.querySelectorAll('script')
+            ];
+            elementsToRemove.forEach(el => el.remove());
 
-            clonedSections.forEach(section => section.classList.add('active'));
-            clonedSubsections.forEach(subsection => subsection.classList.add('active'));
-            clonedDetails.forEach(detail => detail.style.display = 'block');
-
-            const imageContainers = clonedDoc.querySelectorAll('.step-image-container');
-            imageContainers.forEach(container => {
-                container.removeAttribute('onclick');
-                container.style.cursor = 'default';
-            });
-
-            const mainButtons = clonedDoc.querySelectorAll('.main-btn');
-            mainButtons.forEach(btn => btn.remove());
-
-            const subsectionNav = clonedDoc.querySelectorAll('.subsection-nav');
-            subsectionNav.forEach(nav => nav.remove());
-
-            const detailNav = clonedDoc.querySelectorAll('.detail-nav');
-            detailNav.forEach(nav => nav.remove());
-
-            const backButtons = clonedDoc.querySelectorAll('[onclick*="Back"]');
-            backButtons.forEach(btn => btn.remove());
-
-            const saveDownloadSection = clonedDoc.querySelector('.save-download-section');
-            if (saveDownloadSection) {
-                saveDownloadSection.remove();
-            }
-
-            const notification = clonedDoc.querySelector('.notification');
-            if (notification) {
-                notification.remove();
-            }
-
-            const scripts = clonedDoc.querySelectorAll('script');
-            scripts.forEach(script => {
-                script.remove();
-            });
-
-            const headerElements = clonedDoc.querySelectorAll('body > *');
-            headerElements.forEach(el => {
-                if (el.textContent.includes('Master SOP Handbook') &&
-                    el.textContent.includes('Standard Operating Procedures Dashboard')) {
-                    el.remove();
-                }
-            });
-
+            // Add read-only banner
             const bodyElement = clonedDoc.querySelector('body');
             if (bodyElement) {
                 const readOnlyBanner = clonedDoc.createElement('div');
@@ -2093,49 +1926,20 @@
                 bodyElement.insertBefore(readOnlyBanner, bodyElement.firstChild);
             }
 
-            const styleElement = document.getElementById('sop-image-styles');
-            if (styleElement && !clonedDoc.getElementById('sop-image-styles')) {
-                const clonedHead = clonedDoc.querySelector('head');
-                if (clonedHead) {
-                    clonedHead.appendChild(styleElement.cloneNode(true));
-                }
-            }
-
             const readOnlyStyles = clonedDoc.createElement('style');
             readOnlyStyles.textContent = `
-        body {
-            overflow-y: auto !important;
-        }
-        .content-area {
+        body { overflow-y: auto !important; }
+        .content-area, .sop-content, .sop-detail {
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
-            margin-bottom: 40px !important;
-            border-bottom: 3px solid #e5e7eb;
-            padding-bottom: 40px;
         }
-        .sop-content {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin-bottom: 30px !important;
-        }
-        .sop-detail {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin-bottom: 20px !important;
-        }
+        .content-area { margin-bottom: 40px; border-bottom: 3px solid #e5e7eb; padding-bottom: 40px; }
     `;
             const clonedHead = clonedDoc.querySelector('head');
             if (clonedHead) {
                 clonedHead.appendChild(readOnlyStyles);
             }
-
-            notificationEl.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 15px;">📦 Creating File...</div>
-        <div style="font-size: 13px;">Finalizing your document...</div>
-    `;
 
             const htmlContent = '<!DOCTYPE html>\n' + clonedDoc.outerHTML;
             const blob = new Blob([htmlContent], { type: 'text/html' });
@@ -2145,12 +1949,19 @@
 
             const timestamp = new Date().toISOString().slice(0, 10);
             link.download = `Master_SOP_Handbook_Complete_${timestamp}.html`;
-
             link.click();
+
+            function formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+            }
 
             const totalTime = ((Date.now() - startTime) / 1000).toFixed(1);
             notificationEl.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">✅ Download Started!</div>
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">✅ Download Complete!</div>
         <div style="font-size: 13px; margin-bottom: 4px;">📊 ${successfulEmbeds} of ${totalImages} images embedded</div>
         <div style="font-size: 13px; margin-bottom: 4px;">💾 File size: ${formatBytes(actualFileSize)}</div>
         <div style="font-size: 13px;">⏱️ Completed in ${totalTime}s</div>
@@ -2180,7 +1991,6 @@
             }
 
             event.target.closest('.main-btn').classList.add('active');
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -2329,31 +2139,30 @@
             }
         }
 
+        // Initialize on page load
         window.onload = async function () {
+            console.log('🚀 Initializing SOP Handler...');
+
+            // Convert all Google Drive images to base64
             await convertExistingImages();
 
-            // Setup Ctrl+S / Cmd+S save handler
+            // Setup keyboard shortcuts
             setupSaveHandler();
 
-            // Check if document is already saved
+            // Check if already saved
             if (isDocumentSaved()) {
-                // Hide Save All and Download buttons if they exist
                 const saveDownloadSection = document.querySelector('.save-download-section');
                 if (saveDownloadSection) {
                     saveDownloadSection.style.display = 'none';
                 }
-
-                // Apply security protections
                 applySavedDocumentProtection();
-
-                console.log('Document is in viewer mode - Read-only protections enabled');
+                console.log('Document is in read-only mode');
             } else {
-                // Show instruction for first-time users
                 const notification = document.getElementById('notification');
                 if (notification) {
                     notification.innerHTML = `
                 <div style="font-weight: bold; margin-bottom: 5px;">💡 Quick Tip</div>
-                <div style="font-size: 13px;">Press <strong>Ctrl+S</strong> (or Cmd+S on Mac) to save this file with all images embedded!</div>
+                <div style="font-size: 13px;">Press <strong>Ctrl+S</strong> (or Cmd+S) to save with all images!</div>
             `;
                     notification.style.background = '#6366f1';
                     notification.classList.add('show');
@@ -2361,6 +2170,7 @@
                 }
             }
 
+            // Add image styles
             if (!document.querySelector('#sop-image-styles')) {
                 const style = document.createElement('style');
                 style.id = 'sop-image-styles';
@@ -2378,7 +2188,6 @@
                 box-sizing: border-box;
                 min-height: 200px;
             }
-
             .image-wrapper {
                 width: 100%;
                 max-width: 100%;
@@ -2387,7 +2196,6 @@
                 align-items: center;
                 max-height: 500px;
             }
-
             .step-image-container img {
                 max-width: 100%;
                 max-height: 500px;
@@ -2397,34 +2205,11 @@
                 border-radius: 4px;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }
-
-            @media screen and (max-width: 768px) {
-                .step-image-container img {
-                    max-height: 400px;
-                }
-                
-                .image-wrapper {
-                    max-height: 400px;
-                }
-            }
-
-            @media screen and (min-width: 1200px) {
-                .step-image-container img {
-                    max-height: 600px;
-                }
-
-                .image-wrapper {
-                    max-height: 600px;
-                }
-            }
-
-            /* Hide Save/Download section - no longer needed */
-            .save-download-section {
-                display: none !important;
-            }
         `;
                 document.head.appendChild(style);
             }
+
+            console.log('✅ SOP Handler Ready!');
         };
     </script>
 <!-- Code injected by live-server -->
